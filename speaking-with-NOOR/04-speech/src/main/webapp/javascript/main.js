@@ -225,7 +225,7 @@
           startByteStream(e);
         }, {once: true});
 
-        socket.send(JSON.stringify({sampleRate: context.sampleRate,languageCode: 'ar-EG'}));
+        socket.send(JSON.stringify({sampleRate: context.sampleRate}));
 
       }).catch(console.log.bind(console));
     }
