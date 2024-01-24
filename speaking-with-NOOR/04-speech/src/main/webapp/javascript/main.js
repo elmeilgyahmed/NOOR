@@ -137,7 +137,6 @@
   // per https://g.co/cloud/speech/reference/rest/v1beta1/RecognitionConfig
   const SAMPLE_RATE = 16000;
   const SAMPLE_SIZE = 16;
-  const LANGUAGE_CODE = 'ar-EG'; 
 
   var playButton = document.getElementById('playbutton');
 
@@ -152,7 +151,6 @@
       audio: {
         echoCancellation: true,
         channelCount: 1,
-        languageCode: LANGUAGE_CODE,
         sampleRate: {
           ideal: SAMPLE_RATE
         },
@@ -227,7 +225,7 @@
           startByteStream(e);
         }, {once: true});
 
-        socket.send(JSON.stringify({sampleRate: context.sampleRate,languageCode: context.languageCode}));
+        socket.send(JSON.stringify({sampleRate: context.sampleRate,languageCode: 'ar-EG'}));
 
       }).catch(console.log.bind(console));
     }
