@@ -137,6 +137,7 @@
   // per https://g.co/cloud/speech/reference/rest/v1beta1/RecognitionConfig
   const SAMPLE_RATE = 16000;
   const SAMPLE_SIZE = 16;
+  const LANGUAGE_CODE = 'ar-EG'; 
 
   var playButton = document.getElementById('playbutton');
 
@@ -151,6 +152,7 @@
       audio: {
         echoCancellation: true,
         channelCount: 1,
+        languageCode: LANGUAGE_CODE,
         sampleRate: {
           ideal: SAMPLE_RATE
         },
@@ -172,7 +174,7 @@
    * Hook up event handlers to create / destroy websockets, and audio nodes to
    * transmit audio bytes through it.
    */
-  function initWebsocket(audioPromise, languageCode) {
+  function initWebsocket(audioPromise) {
     var socket;
     var sourceNode;
 
@@ -225,7 +227,7 @@
           startByteStream(e);
         }, {once: true});
 
-        socket.send(JSON.stringify({sampleRate: context.sampleRate,languageCode: languageCode}));
+        socket.send(JSON.stringify({sampleRate: context.sampleRate,languageCode: context.languageCode}));
 
       }).catch(console.log.bind(console));
     }
