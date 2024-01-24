@@ -166,7 +166,7 @@
       microphone.connect(analyser);
     }).catch(console.log.bind(console));
 
-    initWebsocket(audioPromise,'ar-EG');
+    initWebsocket(audioPromise);
   }, {once: true});
 
 
