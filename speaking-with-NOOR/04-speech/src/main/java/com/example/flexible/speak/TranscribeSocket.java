@@ -142,8 +142,9 @@ public class TranscribeSocket extends WebSocketAdapter
 
     try {
       StreamingRecognitionResult result = results.get(0);
-      logger.info("Got result " + result);
-      //String transcript = result.getAlternatives(0).getTranscript();
+      //logger.info("Got result " + chatGPT(result);
+      String transcript = result.getAlternatives(0).getTranscript();
+      logger.info("Transcript: " + transcript);
       getRemote().sendString(gson.toJson(result));
     } catch (IOException e) {
       logger.log(Level.WARNING, "Error sending to websocket", e);
