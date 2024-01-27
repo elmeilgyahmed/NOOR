@@ -49,6 +49,53 @@ public class TranscribeSocket extends WebSocketAdapter
   public TranscribeSocket() {
     gson = new Gson();
   }
+  public static String chatGPT(String prompt) {
+       String url = "https://api.openai.com/v1/chat/completions";
+       String apiKey = "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";
+       String model = "gpt-3.5-turbo";
+
+       try {
+           URL obj = new URL(url);
+           HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
+           connection.setRequestMethod("POST");
+           connection.setRequestProperty("Authorization", "Bearer " + apiKey);
+           connection.setRequestProperty("Content-Type", "application/json");
+
+           // The request body
+           String body = "{\"model\": \"" + model + "\", \"messages\": [{\"role\": \"user\", \"content\": \"Assume you are Chatbot robot in Zewail City University called \\\"Noor\\\" and you are created by a team of researchers led by Dr. Mostafa El Shafii. Briefly answer: " + prompt + " in a maximum of 50 words.\"}]}";
+           connection.setDoOutput(true);
+           OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+           writer.write(body);
+           writer.flush();
+           writer.close();
+
+           // Response from ChatGPT
+           BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+           String line;
+
+           StringBuffer response = new StringBuffer();
+
+           while ((line = br.readLine()) != null) {
+               response.append(line);
+           }
+           br.close();
+
+           // calls the method to extract the message.
+           return extractMessageFromJSONResponse(response.toString());
+
+       } catch (IOException e) {
+           throw new RuntimeException(e);
+       }
+   }
+
+   public static String extractMessageFromJSONResponse(String response) {
+       int start = response.indexOf("content")+ 11;
+
+       int end = response.indexOf("\"", start);
+
+       return response.substring(start, end);
+
+   }
 
   /**
    * Called when the client sends this server some raw bytes (ie audio data).
@@ -85,7 +132,7 @@ public class TranscribeSocket extends WebSocketAdapter
             RecognitionConfig.newBuilder()
             .setEncoding(AudioEncoding.LINEAR16)
             .setSampleRateHertz(constraints.sampleRate)
-            .setLanguageCode("ar-EG")
+            .setLanguageCode("en-US")
             .build();
         StreamingRecognitionConfig streamingConfig =
             StreamingRecognitionConfig.newBuilder()
@@ -144,7 +191,7 @@ public class TranscribeSocket extends WebSocketAdapter
       StreamingRecognitionResult result = results.get(0);
       //logger.info("Got result " + chatGPT(result);
       String transcript = result.getAlternatives(0).getTranscript();
-      logger.info("Transcript: " + transcript);
+      logger.info("Transcript: " + chatGPT(transcript));
       getRemote().sendString(gson.toJson(result));
     } catch (IOException e) {
       logger.log(Level.WARNING, "Error sending to websocket", e);
