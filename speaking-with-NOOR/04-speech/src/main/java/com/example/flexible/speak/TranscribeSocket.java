@@ -48,6 +48,7 @@ public class TranscribeSocket extends WebSocketAdapter
   ApiStreamObserver<StreamingRecognizeRequest> requestObserver;
   private Gson gson;
   SpeechClient speech;
+  int counter = 0;
 
   public TranscribeSocket() {
     gson = new Gson();
@@ -56,7 +57,6 @@ public class TranscribeSocket extends WebSocketAdapter
        String url = "https://api.openai.com/v1/chat/completions";
        String apiKey = "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";
        String model = "gpt-3.5-turbo";
-       int counter = 0;
 
        try {
            URL obj = new URL(url);
