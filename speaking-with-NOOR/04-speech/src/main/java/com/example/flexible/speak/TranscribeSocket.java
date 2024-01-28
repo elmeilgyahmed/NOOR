@@ -55,7 +55,7 @@ public class TranscribeSocket extends WebSocketAdapter
   }
   public static String chatGPT(String prompt) {
        String url = "https://api.openai.com/v1/chat/completions";
-       String apiKey = "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";
+       String apiKey = "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";
        String model = "gpt-3.5-turbo";
 
        try {
@@ -196,7 +196,7 @@ public class TranscribeSocket extends WebSocketAdapter
       StreamingRecognitionResult result = results.get(0);
       //logger.info("Got result " + chatGPT(result);
       String transcript = result.getAlternatives(0).getTranscript();
-      if (counter > 10) {
+      if (counter > 15) {
           logger.info("Transcript: " + chatGPT(transcript));
           counter = 0; // Reset the counter after the action is performed
       }
