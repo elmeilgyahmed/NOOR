@@ -37,6 +37,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class TranscribeSocket extends WebSocketAdapter
     implements ApiStreamObserver<StreamingRecognizeResponse> {
@@ -51,7 +54,7 @@ public class TranscribeSocket extends WebSocketAdapter
   }
   public static String chatGPT(String prompt) {
        String url = "https://api.openai.com/v1/chat/completions";
-       String apiKey = "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";
+       String apiKey = "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";
        String model = "gpt-3.5-turbo";
 
        try {
