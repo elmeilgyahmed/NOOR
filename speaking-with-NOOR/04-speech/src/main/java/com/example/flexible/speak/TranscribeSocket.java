@@ -54,56 +54,38 @@ public class TranscribeSocket extends WebSocketAdapter
   private Gson gson;
   SpeechClient speech;
   int counter = 0;
+  /** fucntion to handle vertexapi connections */
+  // TODO(developer): Replace these variables before running the sample.
+  String projectId = "noor2-344811";
+  String location = "zewailcity.edu.eg";
+  String modelName = "gemini-pro";
+  private ChatSession chatSession;  // Declare the ChatSession as a class-level field
 
   public TranscribeSocket() {
     gson = new Gson();
   }
-  public static String chatGPT(String prompt) {
-       String url = "https://api.openai.com/v1/chat/completions";
-       String apiKey = "";
-       String model = "gpt-3.5-turbo";
 
-       try {
-           URL obj = new URL(url);
-           HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
-           connection.setRequestMethod("POST");
-           connection.setRequestProperty("Authorization", "Bearer " + apiKey);
-           connection.setRequestProperty("Content-Type", "application/json");
-
-           // The request body
-           String body = "{\"model\": \"" + model + "\", \"messages\": [{\"role\": \"user\", \"content\": \"Assume you are Chatbot robot in Zewail City University called \\\"Noor\\\" and you are created by a team of researchers led by Dr. Mostafa El Shafii. Briefly answer: " + prompt + " in a maximum of 50 words.\"}]}";
-           connection.setDoOutput(true);
-           OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-           writer.write(body);
-           writer.flush();
-           writer.close();
-
-           // Response from ChatGPT
-           BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-           String line;
-
-           StringBuffer response = new StringBuffer();
-
-           while ((line = br.readLine()) != null) {
-               response.append(line);
-           }
-           br.close();
-
-           // calls the method to extract the message.
-           return extractMessageFromJSONResponse(response.toString());
-
-       } catch (IOException e) {
-           throw new RuntimeException(e);
-       }
-   }
-
-   public static String extractMessageFromJSONResponse(String response) {
-       int start = response.indexOf("content")+ 11;
-
-       int end = response.indexOf("\"", start);
-
-       return response.substring(start, end);
-
+public static void chatDiscussion(String projectId, String location, String modelName, String message)
+       throws IOException {
+      if (!hasRun){
+     // Initialize client that will be used to send requests. This client only needs
+     // to be created once, and can be reused for multiple requests.
+     try (VertexAI vertexAI = new VertexAI(projectId, location)) {
+       GenerateContentResponse response;
+ 
+       GenerativeModel model = new GenerativeModel(modelName, vertexAI);
+       // Create a chat session to be used for interactive conversation.
+       chatSession = new ChatSession(model);
+       hasRun = true;
+ 
+       response = chatSession.sendMessage("Assume you are Chatbot robot in Zewail City University called Noor and you are created by a team of researchers led by Dr. Mostafa El Shafii. Briefly answer: ");
+        logger.info(ResponseHandler.getText(response));
+        }
+     }
+     else { 
+	response = chatSession.sendMessage(message);
+	logger.info(ResponseHandler.getText(response));     
+     }
    }
 
   /**
@@ -200,11 +182,7 @@ public class TranscribeSocket extends WebSocketAdapter
       StreamingRecognitionResult result = results.get(0);
       //logger.info("Got result " + chatGPT(result);
       String transcript = result.getAlternatives(0).getTranscript();
-      if (counter > 10) {
-          logger.info("Transcript: " + chatGPT(transcript));
-          getRemote().sendString(gson.toJson(chatGPT(transcript)));
-          counter = 0; // Reset the counter after the action is performed
-      }
+      chatDiscussion(projectId,location,modelName,transcript)
       getRemote().sendString(gson.toJson(result));
     } catch (IOException e) {
       logger.log(Level.WARNING, "Error sending to websocket", e);
