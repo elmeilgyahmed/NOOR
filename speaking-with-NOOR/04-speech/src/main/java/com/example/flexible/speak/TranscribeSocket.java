@@ -56,8 +56,8 @@ public class TranscribeSocket extends WebSocketAdapter
   private int callCounter = 0;      
   /** fucntion to handle vertexapi connections */
   // TODO(developer): Replace these variables before running the sample.
-  String projectId = "noor2-344811";
-  String location = "zewailcity.edu.eg";
+  String projectId = System.getenv("GOOGLE_CLOUD_PROJECT");
+  String location = "us-central1";
   String modelName = "gemini-pro";
   private ChatSession chatSession;  // Declare the ChatSession as a class-level field
   private boolean hasRun = false;	    
