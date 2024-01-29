@@ -53,7 +53,7 @@ public class TranscribeSocket extends WebSocketAdapter
   ApiStreamObserver<StreamingRecognizeRequest> requestObserver;
   private Gson gson;
   SpeechClient speech;
-  int counter = 0;
+  private int callCounter = 0;      
   /** fucntion to handle vertexapi connections */
   // TODO(developer): Replace these variables before running the sample.
   String projectId = "noor2-344811";
@@ -182,9 +182,16 @@ public void chatDiscussion(String projectId, String location, String modelName, 
 
     try {
       StreamingRecognitionResult result = results.get(0);
+      callCounter++;  
       //logger.info("Got result " + chatGPT(result);
       String transcript = result.getAlternatives(0).getTranscript();
-      //chatDiscussion(projectId,location,modelName,transcript);
+       if (callCounter == 10) {
+            // Perform the action every 10 times
+            chatDiscussion(projectId,location,modelName,transcript);
+
+            // Reset the counter
+            callCounter = 0;
+        }  
       getRemote().sendString(gson.toJson(result));
     } catch (IOException e) {
       logger.log(Level.WARNING, "Error sending to websocket", e);
