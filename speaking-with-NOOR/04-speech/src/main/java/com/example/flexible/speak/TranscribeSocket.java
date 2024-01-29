@@ -55,7 +55,7 @@ public class TranscribeSocket extends WebSocketAdapter
   }
   public static String chatGPT(String prompt) {
        String url = "https://api.openai.com/v1/chat/completions";
-       String apiKey = "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";
+       String apiKey = "";
        String model = "gpt-3.5-turbo";
 
        try {
