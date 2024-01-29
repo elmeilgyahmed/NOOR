@@ -184,7 +184,7 @@ public void chatDiscussion(String projectId, String location, String modelName, 
       StreamingRecognitionResult result = results.get(0);
       //logger.info("Got result " + chatGPT(result);
       String transcript = result.getAlternatives(0).getTranscript();
-      chatDiscussion(projectId,location,modelName,transcript);
+      //chatDiscussion(projectId,location,modelName,transcript);
       getRemote().sendString(gson.toJson(result));
     } catch (IOException e) {
       logger.log(Level.WARNING, "Error sending to websocket", e);
