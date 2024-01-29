@@ -60,6 +60,7 @@ public class TranscribeSocket extends WebSocketAdapter
   String location = "zewailcity.edu.eg";
   String modelName = "gemini-pro";
   private ChatSession chatSession;  // Declare the ChatSession as a class-level field
+  private boolean hasRun = false;	    
 
   public TranscribeSocket() {
     gson = new Gson();
@@ -67,26 +68,27 @@ public class TranscribeSocket extends WebSocketAdapter
 
 public void chatDiscussion(String projectId, String location, String modelName, String message)
        throws IOException {
-      if (!hasRun){
-     // Initialize client that will be used to send requests. This client only needs
-     // to be created once, and can be reused for multiple requests.
-     try (VertexAI vertexAI = new VertexAI(projectId, location)) {
-       GenerateContentResponse response;
- 
-       GenerativeModel model = new GenerativeModel(modelName, vertexAI);
-       // Create a chat session to be used for interactive conversation.
-       chatSession = new ChatSession(model);
-       hasRun = true;
- 
-       response = chatSession.sendMessage("Assume you are Chatbot robot in Zewail City University called Noor and you are created by a team of researchers led by Dr. Mostafa El Shafii. Briefly answer: ");
-        logger.info(ResponseHandler.getText(response));
+   GenerateContentResponse response = null; // Declare response within the method scope
+
+    if (!hasRun) {
+        // Initialize client that will be used to send requests. This client only needs
+        // to be created once, and can be reused for multiple requests.
+        try (VertexAI vertexAI = new VertexAI(projectId, location)) {
+            GenerativeModel model = new GenerativeModel(modelName, vertexAI);
+            // Create a chat session to be used for interactive conversation.
+            chatSession = new ChatSession(model);
+            hasRun = true;
+
+            response = chatSession.sendMessage("Assume you are Chatbot robot in Zewail City University called Noor and you are created by a team of researchers led by Dr. Mostafa El Shafii. Briefly answer: ");
+            logger.info(ResponseHandler.getText(response));
         }
-     }
-     else { 
-	response = chatSession.sendMessage(message);
-	logger.info(ResponseHandler.getText(response));     
-     }
-   }
+    } else {
+        if (chatSession != null) {
+            response = chatSession.sendMessage(message);
+            logger.info(ResponseHandler.getText(response));
+        }
+    }
+       }
 
   /**
    * Called when the client sends this server some raw bytes (ie audio data).
