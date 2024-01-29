@@ -252,6 +252,11 @@
       current: document.createElement('div')
     };
     transcript.el.appendChild(transcript.current);
+    var response = {
+      el: document.getElementById('noor_response').childNodes[0],
+      current: document.createElement('div')
+    };
+    response.el.appendChild(response.current);
     /**
      * This function is called with the transcription result from the server.
      */
@@ -263,6 +268,11 @@
       if (result.isFinal_) {
         transcript.current = document.createElement('div');
         transcript.el.appendChild(transcript.current);
+      }
+      else
+      {
+        response.current.innerHTML = result;
+        response.el.appendChild(response.current);
       }
     }
 
