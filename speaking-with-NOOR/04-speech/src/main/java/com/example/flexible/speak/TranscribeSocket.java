@@ -27,6 +27,11 @@ import com.google.cloud.speech.v1.StreamingRecognizeRequest;
 import com.google.cloud.speech.v1.StreamingRecognizeResponse;
 import com.google.gson.Gson;
 import com.google.protobuf.ByteString;
+import com.google.cloud.vertexai.VertexAI;
+import com.google.cloud.vertexai.api.GenerateContentResponse;
+import com.google.cloud.vertexai.generativeai.preview.ChatSession;
+import com.google.cloud.vertexai.generativeai.preview.GenerativeModel;
+import com.google.cloud.vertexai.generativeai.preview.ResponseHandler;
 import io.grpc.auth.ClientAuthInterceptor;
 import org.eclipse.jetty.websocket.api.WebSocketAdapter;
 
