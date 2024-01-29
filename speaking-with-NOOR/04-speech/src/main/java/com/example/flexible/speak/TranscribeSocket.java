@@ -196,8 +196,9 @@ public class TranscribeSocket extends WebSocketAdapter
       StreamingRecognitionResult result = results.get(0);
       //logger.info("Got result " + chatGPT(result);
       String transcript = result.getAlternatives(0).getTranscript();
-      if (counter > 15) {
+      if (counter > 10) {
           logger.info("Transcript: " + chatGPT(transcript));
+          getRemote().sendString(gson.toJson(chatGPT(transcript)));
           counter = 0; // Reset the counter after the action is performed
       }
       getRemote().sendString(gson.toJson(result));
