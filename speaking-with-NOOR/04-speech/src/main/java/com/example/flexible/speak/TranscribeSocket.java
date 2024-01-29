@@ -136,7 +136,7 @@ public class TranscribeSocket extends WebSocketAdapter
             RecognitionConfig.newBuilder()
             .setEncoding(AudioEncoding.LINEAR16)
             .setSampleRateHertz(constraints.sampleRate)
-            .setLanguageCode("en-US")
+            .setLanguageCode("ar-EG")
             .build();
         StreamingRecognitionConfig streamingConfig =
             StreamingRecognitionConfig.newBuilder()
@@ -192,7 +192,6 @@ public class TranscribeSocket extends WebSocketAdapter
     }
 
     try {
-      counter++;
       StreamingRecognitionResult result = results.get(0);
       //logger.info("Got result " + chatGPT(result);
       String transcript = result.getAlternatives(0).getTranscript();
