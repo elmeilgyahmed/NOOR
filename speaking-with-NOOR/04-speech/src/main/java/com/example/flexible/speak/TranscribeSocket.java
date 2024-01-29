@@ -65,7 +65,7 @@ public class TranscribeSocket extends WebSocketAdapter
     gson = new Gson();
   }
 
-public static void chatDiscussion(String projectId, String location, String modelName, String message)
+public void chatDiscussion(String projectId, String location, String modelName, String message)
        throws IOException {
       if (!hasRun){
      // Initialize client that will be used to send requests. This client only needs
