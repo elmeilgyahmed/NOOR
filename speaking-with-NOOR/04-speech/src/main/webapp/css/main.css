@@ -139,3 +139,31 @@ section > * {
 #transcript>div:empty {
   visibility: hidden;
 }
+#noor_response {
+  font-size: 1.2em;
+  line-height: 1.3em;
+  max-width: 50em;
+  height: calc(1.3em * 5);
+  position: relative;
+  min-width: 10em;
+  overflow: hidden;
+  box-sizing: border-box;
+  transform: translateY(-1em);
+}
+#noor_response>div {
+  position: absolute;
+  bottom: 0;
+  padding: .7em;
+  margin: 0 auto;
+  left: 50%;
+  transform: translate(-50%, -1rem);
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  background: rgba(195,215,264, .5);
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: .5em;
+}
+#noor_response>div:empty {
+  visibility: hidden;
+}
