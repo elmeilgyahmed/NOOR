@@ -45,6 +45,10 @@
     </dependency>
     <dependency>
       <groupId>com.google.cloud</groupId>
+      <artifactId>google-cloud-vertexai</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.cloud</groupId>
       <artifactId>google-cloud-speech</artifactId>
       <version>0.49.0-alpha</version>
     </dependency>
