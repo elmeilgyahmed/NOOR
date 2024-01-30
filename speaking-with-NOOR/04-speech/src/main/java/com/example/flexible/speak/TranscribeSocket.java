@@ -37,6 +37,7 @@ import org.eclipse.jetty.websocket.api.WebSocketAdapter;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -53,14 +54,15 @@ public class TranscribeSocket extends WebSocketAdapter
   ApiStreamObserver<StreamingRecognizeRequest> requestObserver;
   private Gson gson;
   SpeechClient speech;
-  private int callCounter = 0;      
   /** fucntion to handle vertexapi connections */
   // TODO(developer): Replace these variables before running the sample.
   String projectId = "noor2-344811";
   String location = "us-central1";
   String modelName = "gemini-pro";
   private ChatSession chatSession;  // Declare the ChatSession as a class-level field
-  private boolean hasRun = false;	    
+  private boolean hasRun = false;
+  List<String> wordsList = new ArrayList<>();
+
 
   public TranscribeSocket() {
     gson = new Gson();
@@ -89,6 +91,23 @@ public void chatDiscussion(String projectId, String location, String modelName, 
         }
     }
        }
+  /**
+   * Called to add incoming transcripts to one whole message .
+   */        
+public  String arrayToString(List<String> list) {
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < list.size(); i++) {
+            result.append(list.get(i));
+
+            // Add a space between words, except for the last word
+            if (i < list.size() - 1) {
+                result.append(" ");
+            }
+        }
+
+        return result.toString();
+    }
 
   /**
    * Called when the client sends this server some raw bytes (ie audio data).
@@ -182,17 +201,21 @@ public void chatDiscussion(String projectId, String location, String modelName, 
 
     try {
       StreamingRecognitionResult result = results.get(0);
-      callCounter++;  
       //logger.info("Got result " + chatGPT(result);
       String transcript = result.getAlternatives(0).getTranscript();
-       if (callCounter == 10) {
-            // Perform the action every 10 times
-            chatDiscussion(projectId,location,modelName,transcript);
-
-            // Reset the counter
-            callCounter = 0;
-        }  
       getRemote().sendString(gson.toJson(result));
+      if (wordsList.size() <= 15){
+            wordsList.add(transcript);
+        }
+        else{
+            String message = arrayToString(wordsList);
+            logger.info("Completed sentence " + message);
+            chatDiscussion(projectId,location,modelName,message);
+            logger.info("Got response from Vertex " );
+            wordsList.clear();
+        }  
+      // Perform the action every 10 times
+      // Reset the counter
     } catch (IOException e) {
       logger.log(Level.WARNING, "Error sending to websocket", e);
     }
