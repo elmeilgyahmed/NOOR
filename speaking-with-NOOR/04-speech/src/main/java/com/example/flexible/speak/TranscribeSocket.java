@@ -77,20 +77,10 @@ public class TranscribeSocket extends WebSocketAdapter
                 chatSession = new ChatSession(model);
 
                 GenerateContentResponse response = chatSession.sendMessage("First Run :Assume you are Robot :");
+                logger.info("FIRST RUN RESPONSE " + ResponseHandler.getText(response));
                 hasRun = true;
             } else {
-            GenerateContentResponse response = chatSession.sendMessage(message);
-            if (response != null) {
-            // The response has a non-null value
-            logger.info("Response: " + ResponseHandler.getText(response));
-            } else {
-            // The response is null or the value is null
-                GenerativeModel model = new GenerativeModel(modelName, vertexAI);
-                chatSession = new ChatSession(model);
-
-                logger.info("First run: Assume you are a chatbot robot inside Zewail city.");
-                hasRun = true;
-            }
+                   logger.info(" now the conversation shloud contine ");
 
         }} catch (Exception e) {
             // Handle exceptions, log or rethrow as needed
