@@ -207,7 +207,7 @@ public  String arrayToString(List<String> list) {
     try {
       StreamingRecognitionResult result = results.get(0);
       //logger.info("Got result " + chatGPT(result);
-      if (result.is_final()){
+      if (result.getIsFinal()){
           logger.info("Incoming Transcipt " + result.getAlternatives(0).getTranscript());  
       }
       String transcript = result.getAlternatives(0).getTranscript();
