@@ -80,8 +80,7 @@ public class TranscribeSocket extends WebSocketAdapter
                 logger.info("FIRST RUN RESPONSE " + ResponseHandler.getText(response));
                 hasRun = true;
             } else {
-                logger.info("EROOR IN KEEPING CHAT ALIVE");
-                GenerateContentResponse response = chatSession.sendMessage(message);
+                GenerateContentResponse response = chatSession.sendMessage("Second Run: could you tell me please what is database":);
                 logger.info("CONVERSATION RUN RESPONSE " + ResponseHandler.getText(response));
         }} catch (Exception e) {
             // Handle exceptions, log or rethrow as needed
