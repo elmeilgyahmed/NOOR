@@ -211,12 +211,16 @@ public  String arrayToString(List<String> list) {
             wordsList.clear();
             } catch (Exception e) {
               logger.log(Level.WARNING, "Error sending to Vertex", e);
+         if (e instanceof io.grpc.StatusRuntimeException) {
+        io.grpc.StatusRuntimeException grpcException = (io.grpc.StatusRuntimeException) e;
+        logger.log(Level.WARNING, "gRPC Status: " + grpcException.getStatus());
+        }  
         }
         }  
       // Perform the action every 10 times
       // Reset the counter
     } catch (IOException e) {
-      logger.log(Level.WARNING, "Error sending to websocket", e);
+      logger.log(Level.WARNING, "Error sending to websocket", e);  
     }
   }
 
