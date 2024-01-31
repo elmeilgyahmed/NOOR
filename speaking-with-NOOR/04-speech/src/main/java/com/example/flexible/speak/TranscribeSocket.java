@@ -61,6 +61,7 @@ public class TranscribeSocket extends WebSocketAdapter
   String modelName = "gemini-pro";
   private boolean hasRun = false;
   List<String> wordsList = new ArrayList<>();
+  private ChatSession chatSession; // Assuming chatSession is needed across multiple invocations
   // Initialize client that will be used to send requests. This client only needs
   // to be created once, and can be reused for multiple requests.
 
@@ -71,24 +72,20 @@ public class TranscribeSocket extends WebSocketAdapter
 
     public void chatDiscussion(String projectId, String location, String modelName, String message) {
         try (VertexAI vertexAI = new VertexAI(projectId, location)) {
-            if(!hasRun){
-            GenerateContentResponse response;
+            if (!hasRun) {
+                GenerativeModel model = new GenerativeModel(modelName, vertexAI);
+                chatSession = new ChatSession(model);
 
-            GenerativeModel model = new GenerativeModel(modelName, vertexAI);
-            ChatSession chatSession = new ChatSession(model);
-
-            response = chatSession.sendMessage("Assume you are a chatbot robot inside Zewail city.");
-            hasRun = true;
-            logger.info(ResponseHandler.getText(response));
+                logger.info("First run: Assume you are a chatbot robot inside Zewail city.");
+                hasRun = true;
+            } else {
+                logger.info("Subsequent run: " + message);
             }
-            else {
-                response = chatSession.sendMessage(message);
-                logger.info(ResponseHandler.getText(response));
-                logger.info("From chat session");
-                
-        }
-        }
-            catch (Exception e) {
+
+            GenerateContentResponse response = chatSession.sendMessage(message);
+            logger.info("Response: " + ResponseHandler.getText(response));
+
+        } catch (Exception e) {
             // Handle exceptions, log or rethrow as needed
             e.printStackTrace();
         }
