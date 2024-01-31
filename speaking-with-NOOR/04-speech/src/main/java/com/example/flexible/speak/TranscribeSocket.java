@@ -210,7 +210,7 @@ public  String arrayToString(List<String> list) {
         else{
             String message = arrayToString(wordsList);
             logger.info("Completed sentence " + message);
-            chatDiscussion(message);
+            chatDiscussion(projectId,location,modelName,message);
             logger.info("Got response from Vertex " );
             wordsList.clear();
         }  
