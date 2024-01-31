@@ -80,7 +80,7 @@ public class TranscribeSocket extends WebSocketAdapter
                 logger.info("FIRST RUN RESPONSE " + ResponseHandler.getText(response));
                 hasRun = true;
             } else {
-                GenerateContentResponse response = chatSession.sendMessage("Second Run: could you tell me please what is database":);
+                GenerateContentResponse response = chatSession.sendMessage("Second Run: could you tell me please what is database :");
                 logger.info("CONVERSATION RUN RESPONSE " + ResponseHandler.getText(response));
         }} catch (Exception e) {
             // Handle exceptions, log or rethrow as needed
