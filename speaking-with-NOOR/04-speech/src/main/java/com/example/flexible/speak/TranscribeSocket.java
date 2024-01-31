@@ -214,7 +214,7 @@ public  String arrayToString(List<String> list) {
         }
         else{
             String message = arrayToStringWithoutDuplicates(wordsList);
-            //logger.info("Completed sentence " + message);
+            logger.info("Completed sentence " + message);
             try{
             chatDiscussion(projectId,location,modelName,message);
             wordsList.clear();
