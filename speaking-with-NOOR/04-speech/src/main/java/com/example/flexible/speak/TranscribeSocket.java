@@ -63,20 +63,34 @@ public class TranscribeSocket extends WebSocketAdapter
   List<String> wordsList = new ArrayList<>();
   // Initialize client that will be used to send requests. This client only needs
   // to be created once, and can be reused for multiple requests.
-  VertexAI vertexAI = new VertexAI(projectId, location);
-  GenerativeModel model = new GenerativeModel(modelName, vertexAI);
-  // Create a chat session to be used for interactive conversation.
-  ChatSession chatSession = new ChatSession(model);
-  GenerateContentResponse response =chatSession.sendMessage("Your name is NOOR and you are a robot inside Zewail City ");
+
 
   public TranscribeSocket() {
     gson = new Gson();
   }
 
-public void chatDiscussion(String message){
-            response = chatSession.sendMessage(message);
+    public void chatDiscussion(String projectId, String location, String modelName, String message) {
+        try (VertexAI vertexAI = new VertexAI(projectId, location)) {
+            if(!hasRun){
+            GenerateContentResponse response;
+
+            GenerativeModel model = new GenerativeModel(modelName, vertexAI);
+            ChatSession chatSession = new ChatSession(model);
+
+            response = chatSession.sendMessage("Assume you are a chatbot robot inside Zewail city.");
+            hasRun = true;
             logger.info(ResponseHandler.getText(response));
+            }
+            else {
+                response = chatSession.sendMessage(message);
+                logger.info(ResponseHandler.getText(response));
+                logger.info("From chat session");
+                
+        } catch (Exception e) {
+            // Handle exceptions, log or rethrow as needed
+            e.printStackTrace();
         }
+    }
 
   /**
    * Called to add incoming transcripts to one whole message .
