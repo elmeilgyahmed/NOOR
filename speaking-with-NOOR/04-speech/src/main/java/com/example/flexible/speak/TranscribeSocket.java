@@ -72,17 +72,15 @@ public class TranscribeSocket extends WebSocketAdapter
 
     public void chatDiscussion(String projectId, String location, String modelName, String message) {
         try (VertexAI vertexAI = new VertexAI(projectId, location)) {
-            if (!hasRun) {
                 GenerativeModel model = new GenerativeModel(modelName, vertexAI);
                 chatSession = new ChatSession(model);
-
-                GenerateContentResponse response = chatSession.sendMessage("First Run :Assume you are Robot :");
+                GenerateContentResponse response = chatSession.sendMessage("Assume you are Robot :");
                 logger.info("FIRST RUN RESPONSE " + ResponseHandler.getText(response));
-                hasRun = true;
-            } else {
-                GenerateContentResponse response = chatSession.sendMessage("Second Run: could you tell me please what is database :");
-                logger.info("CONVERSATION RUN RESPONSE " + ResponseHandler.getText(response));
-        }} catch (IOException e) {
+                GenerateContentResponse response = chatSession.sendMessage("could you tell me please what is database ");
+                logger.info("SECOND RUN RESPONSE " + ResponseHandler.getText(response));
+                //GenerateContentResponse response = chatSession.sendMessage(message);
+                //logger.info("SECOND RUN RESPONSE " + ResponseHandler.getText(response));
+        } catch (IOException e) {
         logger.log(Level.WARNING, "Error in Websockts", e);
         }
     }
