@@ -79,11 +79,9 @@ public class TranscribeSocket extends WebSocketAdapter
                 logger.info("First run: Assume you are a chatbot robot inside Zewail city.");
                 hasRun = true;
             } else {
-                logger.info("Subsequent run: " + message);
-            }
-
             GenerateContentResponse response = chatSession.sendMessage(message);
             logger.info("Response: " + ResponseHandler.getText(response));
+            }
 
         } catch (Exception e) {
             // Handle exceptions, log or rethrow as needed
