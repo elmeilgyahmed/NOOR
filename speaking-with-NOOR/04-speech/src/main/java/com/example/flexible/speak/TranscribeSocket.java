@@ -80,7 +80,7 @@ public class TranscribeSocket extends WebSocketAdapter
                 hasRun = true;
             } else {
             GenerateContentResponse response = chatSession.sendMessage(message);
-            if (response != null && response.getValue() != null) {
+            if (response != null) {
             // The response has a non-null value
             logger.info("Response: " + ResponseHandler.getText(response));
             } else {
