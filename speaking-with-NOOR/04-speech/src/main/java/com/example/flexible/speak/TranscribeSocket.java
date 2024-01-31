@@ -81,7 +81,7 @@ public void chatDiscussion(String projectId, String location, String modelName, 
             chatSession = new ChatSession(model);
             hasRun = true;
 
-            response = chatSession.sendMessage("Assume you are Chatbot robot in Zewail City University called Noor and you are created by a team of researchers led by Dr. Mostafa El Shafii. Briefly answer: ");
+            response = chatSession.sendMessage("أزيك ممكن تعرفني عن نفسك");
             logger.info(ResponseHandler.getText(response));
         }
     } else {
