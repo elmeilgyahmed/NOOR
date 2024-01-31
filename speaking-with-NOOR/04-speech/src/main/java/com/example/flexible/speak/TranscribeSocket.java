@@ -87,7 +87,7 @@ public class TranscribeSocket extends WebSocketAdapter
 
         } catch (Exception e) {
             // Handle exceptions, log or rethrow as needed
-            logger.info("ERRORS IN VERTEX")
+            logger.info("ERRORS IN VERTEX");
         }
     }
 
@@ -216,7 +216,7 @@ public  String arrayToString(List<String> list) {
             }
              catch (Exception e) {
             // Handle exceptions, log or rethrow as needed
-            logger.info("ERRORS IN sending messages")
+            logger.info("ERRORS IN sending messages");
         }
         }  
       // Perform the action every 10 times
