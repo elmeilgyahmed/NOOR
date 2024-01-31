@@ -209,8 +209,7 @@ public  String arrayToString(List<String> list) {
             try{
             chatDiscussion(projectId,location,modelName,message);
             wordsList.clear();
-            }
-             catch (IOException e) {
+            } catch (Exception e) {
               logger.log(Level.WARNING, "Error sending to Vertex", e);
         }
         }  
