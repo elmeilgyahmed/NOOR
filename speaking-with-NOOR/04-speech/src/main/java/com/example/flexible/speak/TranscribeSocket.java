@@ -80,8 +80,8 @@ public class TranscribeSocket extends WebSocketAdapter
                 logger.info("FIRST RUN RESPONSE " + ResponseHandler.getText(response));
                 hasRun = true;
             } else {
-                   logger.info(" now the conversation shloud contine ");
-
+                GenerateContentResponse response = chatSession.sendMessage(message);
+                logger.info("CONVERSATION RUN RESPONSE " + ResponseHandler.getText(response));
         }} catch (Exception e) {
             // Handle exceptions, log or rethrow as needed
             logger.info("ERRORS IN VERTEX");
