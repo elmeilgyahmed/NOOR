@@ -207,9 +207,11 @@ public  String arrayToString(List<String> list) {
     try {
       StreamingRecognitionResult result = results.get(0);
       //logger.info("Got result " + chatGPT(result);
+      if (result.isFinal()){
+          logger.info("Incoming Transcipt " + result.getAlternatives(0).getTranscript());  
+      }
       String transcript = result.getAlternatives(0).getTranscript();
       getRemote().sendString(gson.toJson(result));
-      logger.info("Incoming Transcipt " + result);  
       if (wordsList.size() <= 20){
             wordsList.add(transcript);
         }
