@@ -209,8 +209,8 @@ public  String arrayToString(List<String> list) {
       //logger.info("Got result " + chatGPT(result);
       String transcript = result.getAlternatives(0).getTranscript();
       getRemote().sendString(gson.toJson(result));
-      logger.info("Incoming Transcipt " + transcript);  
-      if (wordsList.size() <= 15){
+      logger.info("Incoming Transcipt " + result);  
+      if (wordsList.size() <= 20){
             wordsList.add(transcript);
         }
         else{
