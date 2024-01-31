@@ -64,7 +64,7 @@ public class TranscribeSocket extends WebSocketAdapter
   List<String> wordsList = new ArrayList<>();
   // Initialize client that will be used to send requests. This client only needs
   // to be created once, and can be reused for multiple requests.
-  VertexAI vertexAI = new VertexAI(projectId, location) 
+  VertexAI vertexAI = new VertexAI(projectId, location);
   GenerativeModel model = new GenerativeModel(modelName, vertexAI);
   // Create a chat session to be used for interactive conversation.
   chatSession = new ChatSession(model);
@@ -199,7 +199,7 @@ public  String arrayToString(List<String> list) {
         else{
             String message = arrayToString(wordsList);
             logger.info("Completed sentence " + message);
-            chatDiscussion(projectId,location,modelName,message);
+            chatDiscussion(message);
             logger.info("Got response from Vertex " );
             wordsList.clear();
         }  
