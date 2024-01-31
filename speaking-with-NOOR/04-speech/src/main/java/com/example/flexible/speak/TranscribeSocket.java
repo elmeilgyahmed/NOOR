@@ -156,7 +156,7 @@ public  String arrayToString(List<String> list) {
 
         getRemote().sendString(message);
       } catch (IOException e) {
-        logger.log(Level.WARNING, "Error onWebSocketText", e);
+        logger.log(Level.WARNING, "Error in Vertex", e);
       }
     }
   }
