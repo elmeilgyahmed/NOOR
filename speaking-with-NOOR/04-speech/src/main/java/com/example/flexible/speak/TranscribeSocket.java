@@ -78,7 +78,7 @@ public class TranscribeSocket extends WebSocketAdapter
                 GenerativeModel model = new GenerativeModel(modelName, vertexAI);
                 chatSession = new ChatSession(model);
                 response = chatSession.sendMessage("Assume you are Chatbot robot in Zewail city university called NOOR and your are made by a team of reshearchers lead by dr mostafa el shafii shortly answer: ");
-                response = chatSession.sendMessage(message);
+                response = chatSession.sendMessage(message,20);
                 logger.info("NOOR RESPONSE " + ResponseHandler.getText(response));
                 //GenerateContentResponse response = chatSession.sendMessage(message);
                 //logger.info("SECOND RUN RESPONSE " + ResponseHandler.getText(response));
@@ -209,13 +209,13 @@ public  String arrayToString(List<String> list) {
       //logger.info("Got result " + chatGPT(result);
       String transcript = result.getAlternatives(0).getTranscript();
       getRemote().sendString(gson.toJson(result));
-      logger.info("Completed sentence " + transcript);  
-      if (wordsList.size() <= 10){
+      logger.info("Incoming Transcipt " + transcript);  
+      if (wordsList.size() <= 15){
             wordsList.add(transcript);
         }
         else{
             String message = arrayToStringWithoutDuplicates(wordsList);
-            logger.info("Completed sentence " + message);
+            logger.info("Completed Sentence " + message);
             try{
             chatDiscussion(projectId,location,modelName,message);
             wordsList.clear();
