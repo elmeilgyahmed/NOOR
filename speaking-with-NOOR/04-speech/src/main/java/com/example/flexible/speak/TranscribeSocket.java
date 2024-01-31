@@ -93,7 +93,7 @@ public class TranscribeSocket extends WebSocketAdapter
                 hasRun = true;
             }
 
-        } catch (Exception e) {
+        }} catch (Exception e) {
             // Handle exceptions, log or rethrow as needed
             logger.info("ERRORS IN VERTEX");
         }
