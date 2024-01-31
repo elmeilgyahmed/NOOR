@@ -68,8 +68,7 @@ public class TranscribeSocket extends WebSocketAdapter
   GenerativeModel model = new GenerativeModel(modelName, vertexAI);
   // Create a chat session to be used for interactive conversation.
   ChatSession chatSession = new ChatSession(model);
-  GenerateContentResponse response = null; // Declare response within the method scope
-  response = chatSession.sendMessage("Your name is NOOR and you are a robot inside Zewail City ");
+  GenerateContentResponse response =chatSession.sendMessage("Your name is NOOR and you are a robot inside Zewail City ");
 
   public TranscribeSocket() {
     gson = new Gson();
