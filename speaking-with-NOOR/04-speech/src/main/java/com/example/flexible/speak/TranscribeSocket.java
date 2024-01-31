@@ -205,14 +205,13 @@ public  String arrayToString(List<String> list) {
         }
         else{
             String message = arrayToString(wordsList);
-            logger.info("Completed sentence " + message);
+            //logger.info("Completed sentence " + message);
             try{
             chatDiscussion(projectId,location,modelName,message);
             wordsList.clear();
             }
-             catch (Exception e) {
-            // Handle exceptions, log or rethrow as needed
-            logger.info("ERRORS IN sending messages");
+             catch (IOException e) {
+              logger.log(Level.WARNING, "Error sending to Vertex", e);
         }
         }  
       // Perform the action every 10 times
