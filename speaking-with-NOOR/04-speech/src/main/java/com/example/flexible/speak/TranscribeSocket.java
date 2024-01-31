@@ -62,35 +62,24 @@ public class TranscribeSocket extends WebSocketAdapter
   private ChatSession chatSession;  // Declare the ChatSession as a class-level field
   private boolean hasRun = false;
   List<String> wordsList = new ArrayList<>();
-
+  // Initialize client that will be used to send requests. This client only needs
+  // to be created once, and can be reused for multiple requests.
+  VertexAI vertexAI = new VertexAI(projectId, location) 
+  GenerativeModel model = new GenerativeModel(modelName, vertexAI);
+  // Create a chat session to be used for interactive conversation.
+  chatSession = new ChatSession(model);
+  GenerateContentResponse response = null; // Declare response within the method scope
+  response = chatSession.sendMessage("Your name is NOOR and you are a robot inside Zewail City ");
 
   public TranscribeSocket() {
     gson = new Gson();
   }
 
-public void chatDiscussion(String projectId, String location, String modelName, String message)
-       throws IOException {
-   GenerateContentResponse response = null; // Declare response within the method scope
-
-    if (!hasRun) {
-        // Initialize client that will be used to send requests. This client only needs
-        // to be created once, and can be reused for multiple requests.
-        try (VertexAI vertexAI = new VertexAI(projectId, location)) {
-            GenerativeModel model = new GenerativeModel(modelName, vertexAI);
-            // Create a chat session to be used for interactive conversation.
-            chatSession = new ChatSession(model);
-            hasRun = true;
-
-            response = chatSession.sendMessage("أزيك ممكن تعرفني عن نفسك");
-            logger.info(ResponseHandler.getText(response));
-        }
-    } else {
-        if (chatSession != null) {
+public void chatDiscussion(String message){
             response = chatSession.sendMessage(message);
             logger.info(ResponseHandler.getText(response));
         }
-    }
-       }
+
   /**
    * Called to add incoming transcripts to one whole message .
    */        
@@ -144,7 +133,7 @@ public  String arrayToString(List<String> list) {
             RecognitionConfig.newBuilder()
             .setEncoding(AudioEncoding.LINEAR16)
             .setSampleRateHertz(constraints.sampleRate)
-            .setLanguageCode("ar-EG")
+            .setLanguageCode("en-US")
             .build();
         StreamingRecognitionConfig streamingConfig =
             StreamingRecognitionConfig.newBuilder()
