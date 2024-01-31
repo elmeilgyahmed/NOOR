@@ -204,14 +204,13 @@ public  String arrayToString(List<String> list) {
       //logger.info("Got result " + chatGPT(result);
       String transcript = result.getAlternatives(0).getTranscript();
       getRemote().sendString(gson.toJson(result));
-      if (wordsList.size() <= 15){
+      if (wordsList.size() <= 25){
             wordsList.add(transcript);
         }
         else{
             String message = arrayToString(wordsList);
             logger.info("Completed sentence " + message);
             chatDiscussion(projectId,location,modelName,message);
-            logger.info("Got response from Vertex " );
             wordsList.clear();
         }  
       // Perform the action every 10 times
