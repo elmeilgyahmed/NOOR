@@ -76,7 +76,7 @@ public class TranscribeSocket extends WebSocketAdapter
                 GenerativeModel model = new GenerativeModel(modelName, vertexAI);
                 chatSession = new ChatSession(model);
 
-                logger.info("First run: Assume you are a chatbot robot inside Zewail city.");
+                GenerateContentResponse response = chatSession.sendMessage("First Run :Assume you are Robot :");
                 hasRun = true;
             } else {
             GenerateContentResponse response = chatSession.sendMessage(message);
@@ -85,7 +85,6 @@ public class TranscribeSocket extends WebSocketAdapter
             logger.info("Response: " + ResponseHandler.getText(response));
             } else {
             // The response is null or the value is null
-                VertexAI vertexAI = new VertexAI(projectId, location);
                 GenerativeModel model = new GenerativeModel(modelName, vertexAI);
                 chatSession = new ChatSession(model);
 
