@@ -211,8 +211,7 @@ public  String arrayToString(List<String> list) {
             wordsList.add(transcript);
         }
         else{
-            String uniqueString = arrayToStringWithoutDuplicates(wordsList);
-            String message = arrayToString(uniqueString);
+            String message = arrayToStringWithoutDuplicates(wordsList);
             //logger.info("Completed sentence " + message);
             try{
             chatDiscussion(projectId,location,modelName,message);
