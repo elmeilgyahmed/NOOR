@@ -69,7 +69,7 @@ public class TranscribeSocket extends WebSocketAdapter
   public TranscribeSocket() {
     gson = new Gson();
   }
-
+    // called when we have a message to vertex api
     public void chatDiscussion(String projectId, String location, String modelName, String message) {
         try (VertexAI vertexAI = new VertexAI(projectId, location)) {
                 GenerateContentResponse response;
@@ -102,6 +102,15 @@ public  String arrayToString(List<String> list) {
 
         return result.toString();
     }
+   public  String arrayToStringWithoutDuplicates(List<String> list) {
+        List<String> uniqueList = removeDuplicates(list);
+        return arrayToString(uniqueList);
+    }
+
+    private  List<String> removeDuplicates(List<String> list) {
+        Set<String> uniqueSet = new LinkedHashSet<>(list);
+        return List.copyOf(uniqueSet);
+    }     
 
   /**
    * Called when the client sends this server some raw bytes (ie audio data).
@@ -202,7 +211,8 @@ public  String arrayToString(List<String> list) {
             wordsList.add(transcript);
         }
         else{
-            String message = arrayToString(wordsList);
+            String uniqueString = arrayToStringWithoutDuplicates(wordsList);
+            String message = arrayToString(uniqueString);
             //logger.info("Completed sentence " + message);
             try{
             chatDiscussion(projectId,location,modelName,message);
