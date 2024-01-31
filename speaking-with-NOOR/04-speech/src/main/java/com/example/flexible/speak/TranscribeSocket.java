@@ -87,7 +87,7 @@ public class TranscribeSocket extends WebSocketAdapter
 
         } catch (Exception e) {
             // Handle exceptions, log or rethrow as needed
-            e.printStackTrace();
+            logger.info("ERRORS IN VERTEX")
         }
     }
 
@@ -210,8 +210,14 @@ public  String arrayToString(List<String> list) {
         else{
             String message = arrayToString(wordsList);
             logger.info("Completed sentence " + message);
+            try{
             chatDiscussion(projectId,location,modelName,message);
             wordsList.clear();
+            }
+             catch (Exception e) {
+            // Handle exceptions, log or rethrow as needed
+            logger.info("ERRORS IN sending messages")
+        }
         }  
       // Perform the action every 10 times
       // Reset the counter
