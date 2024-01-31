@@ -72,11 +72,12 @@ public class TranscribeSocket extends WebSocketAdapter
 
     public void chatDiscussion(String projectId, String location, String modelName, String message) {
         try (VertexAI vertexAI = new VertexAI(projectId, location)) {
+                GenerateContentResponse response;
                 GenerativeModel model = new GenerativeModel(modelName, vertexAI);
                 chatSession = new ChatSession(model);
-                GenerateContentResponse response = chatSession.sendMessage("Assume you are Robot :");
+                response = chatSession.sendMessage("Assume you are Robot :");
                 logger.info("FIRST RUN RESPONSE " + ResponseHandler.getText(response));
-                GenerateContentResponse response = chatSession.sendMessage("could you tell me please what is database ");
+                response = chatSession.sendMessage("could you tell me please what is database ");
                 logger.info("SECOND RUN RESPONSE " + ResponseHandler.getText(response));
                 //GenerateContentResponse response = chatSession.sendMessage(message);
                 //logger.info("SECOND RUN RESPONSE " + ResponseHandler.getText(response));
