@@ -207,15 +207,15 @@ public  String arrayToString(List<String> list) {
     try {
       StreamingRecognitionResult result = results.get(0);
       //logger.info("Got result " + chatGPT(result);
-      if (result.getIsFinal()){
-          logger.info("Incoming Transcipt " + result.getAlternatives(0).getTranscript());  
-      }
       String transcript = result.getAlternatives(0).getTranscript();
       getRemote().sendString(gson.toJson(result));
-      if (wordsList.size() <= 20){
-            wordsList.add(transcript);
+      if (result.getIsFinal()){
+            //wordsList.add(transcript);
+          logger.info("Incoming Transcipt " + result.getAlternatives(0).getTranscript());  
+          chatDiscussion(projectId,location,modelName,transcript);
         }
-        else{
+        /**
+        else(wordsList.size() <= 20){
             String message = arrayToStringWithoutDuplicates(wordsList);
             logger.info("Completed Sentence " + message);
             try{
@@ -228,7 +228,7 @@ public  String arrayToString(List<String> list) {
         logger.log(Level.WARNING, "gRPC Status: " + grpcException.getStatus());
         }  
         }
-        }  
+        */  
       // Perform the action every 10 times
       // Reset the counter
     } catch (IOException e) {
