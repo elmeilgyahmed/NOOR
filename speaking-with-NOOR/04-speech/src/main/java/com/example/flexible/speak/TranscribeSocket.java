@@ -75,8 +75,7 @@ public class TranscribeSocket extends WebSocketAdapter
                 GenerateContentResponse response;
                 GenerativeModel model = new GenerativeModel(modelName, vertexAI);
                 chatSession = new ChatSession(model);
-                response = chatSession.sendMessage("Assume you are Robot :");
-                logger.info("FIRST RUN RESPONSE " + ResponseHandler.getText(response));
+                response = chatSession.sendMessage("Assume you are Chatbot robot in Zewail city university called NOOR and your are made by a team of reshearchers lead by dr mostafa el shafii shortly answer: ");
                 response = chatSession.sendMessage(message);
                 logger.info("SECOND RUN RESPONSE " + ResponseHandler.getText(response));
                 //GenerateContentResponse response = chatSession.sendMessage(message);
