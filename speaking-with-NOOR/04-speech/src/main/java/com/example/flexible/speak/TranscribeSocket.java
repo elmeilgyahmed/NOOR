@@ -84,7 +84,7 @@ public class TranscribeSocket extends WebSocketAdapter
                 logger.info("CONVERSATION RUN RESPONSE " + ResponseHandler.getText(response));
         }} catch (Exception e) {
             // Handle exceptions, log or rethrow as needed
-            logger.info("ERRORS IN VERTEX",e);
+            logger.error("ERRORS IN VERTEX",e);
         }
     }
 
