@@ -82,9 +82,8 @@ public class TranscribeSocket extends WebSocketAdapter
             } else {
                 GenerateContentResponse response = chatSession.sendMessage("Second Run: could you tell me please what is database :");
                 logger.info("CONVERSATION RUN RESPONSE " + ResponseHandler.getText(response));
-        }} catch (Exception e) {
-            // Handle exceptions, log or rethrow as needed
-            logger.error("ERRORS IN VERTEX",e);
+        }} catch (IOException e) {
+        logger.log(Level.WARNING, "Error in Websockts", e);
         }
     }
 
@@ -156,7 +155,7 @@ public  String arrayToString(List<String> list) {
 
         getRemote().sendString(message);
       } catch (IOException e) {
-        logger.log(Level.WARNING, "Error in Vertex", e);
+        logger.log(Level.WARNING, "Error in Websockts", e);
       }
     }
   }
