@@ -86,7 +86,9 @@ public class TranscribeSocket extends WebSocketAdapter
                 logger.info(ResponseHandler.getText(response));
                 logger.info("From chat session");
                 
-        } catch (Exception e) {
+        }
+        }
+            catch (Exception e) {
             // Handle exceptions, log or rethrow as needed
             e.printStackTrace();
         }
