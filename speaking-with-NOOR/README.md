@@ -46,6 +46,7 @@ Stream the raw audio data from the client to the server using WebSockets.
 
 When on an `https` webpage, websocket connections are required to be secure
 `wss`.
+port:8443
 
 ## Step 4
 
