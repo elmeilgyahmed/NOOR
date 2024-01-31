@@ -59,7 +59,6 @@ public class TranscribeSocket extends WebSocketAdapter
   String projectId = "noor2-344811";
   String location = "us-central1";
   String modelName = "gemini-pro";
-  private ChatSession chatSession;  // Declare the ChatSession as a class-level field
   private boolean hasRun = false;
   List<String> wordsList = new ArrayList<>();
   // Initialize client that will be used to send requests. This client only needs
