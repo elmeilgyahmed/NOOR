@@ -77,7 +77,7 @@ public class TranscribeSocket extends WebSocketAdapter
                 chatSession = new ChatSession(model);
                 response = chatSession.sendMessage("Assume you are Chatbot robot in Zewail city university called NOOR and your are made by a team of reshearchers lead by dr mostafa el shafii shortly answer: ");
                 response = chatSession.sendMessage(message);
-                logger.info("SECOND RUN RESPONSE " + ResponseHandler.getText(response));
+                logger.info("NOOR RESPONSE " + ResponseHandler.getText(response));
                 //GenerateContentResponse response = chatSession.sendMessage(message);
                 //logger.info("SECOND RUN RESPONSE " + ResponseHandler.getText(response));
         } catch (IOException e) {
