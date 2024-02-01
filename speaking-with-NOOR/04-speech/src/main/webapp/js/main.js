@@ -231,7 +231,6 @@
 
         socket.addEventListener('response', function(e) {
           socket.addEventListener('response', onReceievingVertixMessage);
-          startByteStream(e);
         }, {once: true});
   
         // ----------------------------------------------------
