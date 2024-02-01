@@ -230,11 +230,13 @@
         //****************************************
         socket.addEventListener('response', function (event) {
             var data = JSON.parse(event.data);
-
-            if (data.event === 'response') {
+            console.log("dattttttttttttttttttttttttttta",data)
+          
             // Handle the 'response' event, e.g., update UI or perform other actions
+            var responseElement = document.getElementById('noor_response');
+            responseElement.innerHTML = "Server Response: " + result;
             console.log("Received response from server:", data.data);
-          }
+          
         });
 
         //****************************************
@@ -293,10 +295,7 @@
 
       console.log("resssssssssult typee022e",typeof result)
 
-      if (result){
-        var responseElement = document.getElementById('noor_response');
-        responseElement.innerHTML = "Server Response: " + result;
-      }
+
       if (result.alternatives_) {
         transcript.current.innerHTML = result.alternatives_[0].transcript_;
       }
