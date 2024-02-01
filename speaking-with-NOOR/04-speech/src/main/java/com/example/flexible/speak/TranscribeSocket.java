@@ -80,6 +80,10 @@ public class TranscribeSocket extends WebSocketAdapter
                 response = chatSession.sendMessage("Assume you are Chatbot robot in Zewail city university called NOOR and your are made by a team of reshearchers lead by dr mostafa el shafii shortly answer: ");
                 response = chatSession.sendMessage(message);
                 logger.info("NOOR RESPONSE " + ResponseHandler.getText(response));
+                // ----------------------------------------------
+                // Trigger the 'response' event on the client side
+                getRemote().sendString("{'event': 'response', 'data': '" + gson.toJson( ResponseHandler.getText(response)) + "'}");
+                // ----------------------------------------------    
                 //GenerateContentResponse response = chatSession.sendMessage(message);
                 //logger.info("SECOND RUN RESPONSE " + ResponseHandler.getText(response));
         } catch (IOException e) {
