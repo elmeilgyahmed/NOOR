@@ -228,7 +228,7 @@
         }, {once: true});
 
         //****************************************
-        socket.addEventListener('message', function (event) {
+        socket.addEventListener('response', function (event) {
             var data = JSON.parse(event.data);
 
             if (data.event === 'response') {
@@ -289,8 +289,9 @@
      */
     function onTranscription(e) {
       var result = JSON.parse(e.data);
-      console.log("resssssssssult typee022e",result)
-        console.log("resssssssjyugfdgfdgfdgdf",result.alternatives_[0])
+      console.log("ssssssssssssssssssss typee022e", result)
+
+      console.log("resssssssssult typee022e",typeof result)
 
       if (result){
         var responseElement = document.getElementById('noor_response');
