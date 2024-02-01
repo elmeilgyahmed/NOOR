@@ -276,6 +276,7 @@
      */
     function onTranscription(e) {
       var result = JSON.parse(e.data);
+      console.log("resssssssssult",result)
       if (result.alternatives_) {
         transcript.current.innerHTML = result.alternatives_[0].transcript_;
       }
