@@ -275,13 +275,13 @@
     };
     transcript.el.appendChild(transcript.current);
     
-    /*
+    
     var response = {
       el: document.getElementById('noor_response').childNodes[0],
       current: document.createElement('div')
     };
     response.el.appendChild(response.current);
-    */
+    
 
     
     /**
@@ -290,6 +290,8 @@
     function onTranscription(e) {
       var result = JSON.parse(e.data);
       console.log("resssssssssult",result)
+      var responseElement = document.getElementById('noor_response');
+      responseElement.innerHTML = "Server Response: " + result;
       if (result.alternatives_) {
         transcript.current.innerHTML = result.alternatives_[0].transcript_;
       }
