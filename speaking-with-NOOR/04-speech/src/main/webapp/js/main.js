@@ -229,9 +229,9 @@
 
         // --------------------------------------------------
 
-        socket.addEventListener('response', function(e) {
+        socket.addEventListener('response', function(event) {
           socket.addEventListener('response', onReceievingVertixMessage);
-          startByteStream(e);
+          startByteStream(event);
         }, {once: true});
   
         // ----------------------------------------------------
