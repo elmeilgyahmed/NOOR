@@ -303,6 +303,12 @@
         transcript.current = document.createElement('div');
         transcript.el.appendChild(transcript.current);
       }
+
+      if (typeof result === "string"){
+           var responseElement = document.getElementById('noor_response');
+          responseElement.innerHTML = "Server Response: " + result;
+      }
+        
    
     }
 
