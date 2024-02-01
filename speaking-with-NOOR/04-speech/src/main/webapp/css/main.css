@@ -143,7 +143,8 @@ section > * {
   font-size: 1.2em;
   line-height: 1.3em;
   max-width: 50em;
-  height: calc(1.3em * 5);
+  height: calc(3.3em * 5);
+  max-height: 25em
   position: relative;
   min-width: 10em;
   overflow: hidden;
