@@ -225,9 +225,19 @@
         socket.addEventListener('message', function(e) {
           socket.addEventListener('message', onTranscription);
           startByteStream(e);
-          socket.addEventListener('response', onReceievingVertixMessage);
-
         }, {once: true});
+
+        //****************************************
+        socket.addEventListener('message', function (event) {
+            var data = JSON.parse(event.data);
+
+            if (data.event === 'response') {
+            // Handle the 'response' event, e.g., update UI or perform other actions
+            console.log("Received response from server:", data.data);
+          }
+        });
+
+        //****************************************
 
         // --------------------------------------------------
         /*
@@ -237,8 +247,6 @@
         }, {once: true});
         */
 
-        
-  
         // ----------------------------------------------------
 
         socket.send(JSON.stringify({sampleRate: context.sampleRate,languageCode: context.languageCode}));
