@@ -292,7 +292,7 @@
       console.log("resssssssssult typeeeeeeeeeeeeeeeeeeeeee",typeof result)
       if (result){
         var responseElement = document.getElementById('noor_response');
-        responseElement.innerHTML = "Server Response: " + result);
+        responseElement.innerHTML = "Server Response: " + result;
       }
       if (result.alternatives_) {
         transcript.current.innerHTML = result.alternatives_[0].transcript_;
