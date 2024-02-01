@@ -289,7 +289,7 @@
      */
     function onTranscription(e) {
       var result = JSON.parse(e.data);
-      console.log("resssssssssult typeeeeeeeeeeeeeeeeeeeeee",typeof result)
+      console.log("resssssssssult typeeeeeeeeeeeeeeeeeeeeee",result.alternatives_[0])
       if (result){
         var responseElement = document.getElementById('noor_response');
         responseElement.innerHTML = "Server Response: " + result;
