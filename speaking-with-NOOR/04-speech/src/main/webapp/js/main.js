@@ -225,14 +225,19 @@
         socket.addEventListener('message', function(e) {
           socket.addEventListener('message', onTranscription);
           startByteStream(e);
+          socket.addEventListener('response', onReceievingVertixMessage);
+
         }, {once: true});
 
         // --------------------------------------------------
-
+        /*
         socket.addEventListener('response', function(event) {
           socket.addEventListener('response', onReceievingVertixMessage);
           startByteStream(event);
         }, {once: true});
+        */
+
+        
   
         // ----------------------------------------------------
 
