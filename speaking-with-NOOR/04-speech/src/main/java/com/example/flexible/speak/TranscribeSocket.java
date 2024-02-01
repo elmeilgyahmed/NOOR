@@ -81,8 +81,10 @@ public class TranscribeSocket extends WebSocketAdapter
                 response = chatSession.sendMessage(message);
                 logger.info("NOOR RESPONSE " + ResponseHandler.getText(response));
                 // ----------------------------------------------
+                getRemote().sendString("{'event': 'response', 'data': '" + gson.toJson(response) + "'}");
+
                 // Trigger the 'response' event on the client side
-                getRemote().sendString("{'event': 'response', 'data': '" + gson.toJson( ResponseHandler.getText(response)) + "'}");
+                 // getRemote().sendString("{'event': 'response', 'data': '" + gson.toJson( ResponseHandler.getText(response)) + "'}");
                 // ----------------------------------------------    
                 //GenerateContentResponse response = chatSession.sendMessage(message);
                 //logger.info("SECOND RUN RESPONSE " + ResponseHandler.getText(response));
