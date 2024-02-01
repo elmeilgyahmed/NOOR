@@ -228,10 +228,12 @@
         }, {once: true});
 
         // --------------------------------------------------
+
         socket.addEventListener('response', function(e) {
           socket.addEventListener('response', onReceievingVertixMessage);
-        };
-        
+          startByteStream(e);
+        }, {once: true});
+  
         // ----------------------------------------------------
 
         socket.send(JSON.stringify({sampleRate: context.sampleRate,languageCode: context.languageCode}));
