@@ -227,6 +227,13 @@
           startByteStream(e);
         }, {once: true});
 
+        // --------------------------------------------------
+        socket.addEventListener('response', function(e) {
+          socket.addEventListener('response', onReceievingVertixMessage);
+        };
+        
+        // ----------------------------------------------------
+
         socket.send(JSON.stringify({sampleRate: context.sampleRate,languageCode: context.languageCode}));
 
       }).catch(console.log.bind(console));
@@ -275,6 +282,25 @@
         response.el.appendChild(response.current);
       }
     }
+
+    // ----------------------------------
+    function onReceievingVertixMessage (event){
+      var data = JSON.parse(event.data);
+
+      if (data.event === 'response') {
+        // Handle the 'response' event, e.g., update UI or perform other actions
+        console.log("Received response from server:", data.data);
+
+        // Assuming you want to display the response in a specific element, update accordingly
+        var responseElement = document.getElementById('noor_response');
+        responseElement.innerHTML = "Server Response: " + data.data;
+      } else {
+        console.log("Wrong event");
+      }
+    
+    }
+
+    // -----------------------------------
 
     // When the mic is resumed or paused, change the state of the websocket too
     context.addEventListener('statechange', toggleWebsocket);
