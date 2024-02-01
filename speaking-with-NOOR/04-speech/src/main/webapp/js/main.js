@@ -262,13 +262,13 @@
     };
     transcript.el.appendChild(transcript.current);
     
-    /*
+    
     var response = {
       el: document.getElementById('noor_response').childNodes[0],
       current: document.createElement('div')
     };
     response.el.appendChild(response.current);
-    */
+    
 
     
     /**
