@@ -231,6 +231,7 @@
 
         socket.addEventListener('response', function(e) {
           socket.addEventListener('response', onReceievingVertixMessage);
+          startByteStream(e);
         }, {once: true});
   
         // ----------------------------------------------------
@@ -287,6 +288,7 @@
     // ----------------------------------
     function onReceievingVertixMessage (event){
       var data = JSON.parse(event.data);
+      console.log(data);
 
       if (data.event === 'response') {
         // Handle the 'response' event, e.g., update UI or perform other actions
