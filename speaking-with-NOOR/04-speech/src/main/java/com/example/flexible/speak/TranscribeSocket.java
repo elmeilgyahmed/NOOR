@@ -32,7 +32,7 @@ import com.google.cloud.vertexai.api.GenerateContentResponse;
 import com.google.cloud.vertexai.generativeai.preview.ChatSession;
 import com.google.cloud.vertexai.generativeai.preview.GenerativeModel;
 import com.google.cloud.vertexai.generativeai.preview.ResponseHandler;
-import com.google.cloud.vertexai.api.stub.GenerationConfig;
+import com.google.cloud.vertexai.api.GenerationConfig;
 import io.grpc.auth.ClientAuthInterceptor;
 import org.eclipse.jetty.websocket.api.WebSocketAdapter;
 
