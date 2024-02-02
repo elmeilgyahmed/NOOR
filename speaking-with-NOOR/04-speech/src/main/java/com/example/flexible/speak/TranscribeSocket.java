@@ -78,6 +78,7 @@ public class TranscribeSocket extends WebSocketAdapter
     public void chatDiscussion(String projectId, String location, String modelName, String message) {
         try (VertexAI vertexAI = new VertexAI(projectId, location)) {
                 GenerateContentResponse response;
+                /**
                 GenerationConfig generationConfig = GenerationConfig.newBuilder()
                 .setTemperature(0.9F)
                 .setTopK(16)
@@ -85,6 +86,7 @@ public class TranscribeSocket extends WebSocketAdapter
                 .setMaxOutputTokens(200)
                 .setStopSequences(0, "red")
                 .build();
+                */
                 GenerativeModel model = new GenerativeModel(modelName,vertexAI);
                 chatSession = new ChatSession(model);
                 response = chatSession.sendMessage("Assume you are Chatbot robot in Zewail city university called NOOR and your are made by a team of reshearchers lead by dr mostafa el shafii shortly answer: ");
@@ -173,7 +175,7 @@ public  String arrayToString(List<String> list) {
             RecognitionConfig.newBuilder()
             .setEncoding(AudioEncoding.LINEAR16)
             .setSampleRateHertz(constraints.sampleRate)
-            .setLanguageCode("ar-EG")
+            .setLanguageCode("en-US")
             .build();
         StreamingRecognitionConfig streamingConfig =
             StreamingRecognitionConfig.newBuilder()
