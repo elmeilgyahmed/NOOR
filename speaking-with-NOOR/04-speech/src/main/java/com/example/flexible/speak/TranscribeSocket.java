@@ -85,7 +85,7 @@ public class TranscribeSocket extends WebSocketAdapter
                 .setMaxOutputTokens(200)
                 .setStopSequences(0, "red")
                 .build();
-                GenerativeModel model = new GenerativeModel(modelName,generationConfig,vertexAI);
+                GenerativeModel model = new GenerativeModel(modelName,vertexAI);
                 chatSession = new ChatSession(model);
                 response = chatSession.sendMessage("Assume you are Chatbot robot in Zewail city university called NOOR and your are made by a team of reshearchers lead by dr mostafa el shafii shortly answer: ");
                 response = chatSession.sendMessage(message);
