@@ -78,7 +78,9 @@ public class TranscribeSocket extends WebSocketAdapter
     public void chatDiscussion(String projectId, String location, String modelName, String message) {
         try (VertexAI vertexAI = new VertexAI(projectId, location)) {
                 GenerateContentResponse response;
-                GenerationConfig config = new GenerationConfig();
+                GenerationConfig config = new GenerationConfig().builder()
+                                         .setMaxOutputTokens(50)
+                                         .build();
                 config.setMaxOutputTokens(50);
                 GenerativeModel model = new GenerativeModel(modelName, vertexAI,config);
                 chatSession = new ChatSession(model);
