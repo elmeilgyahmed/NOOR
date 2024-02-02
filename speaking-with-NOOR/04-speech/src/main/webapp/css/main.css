@@ -144,14 +144,15 @@ section > * {
   line-height: 1.3em;
   max-width: 50em;
   height: calc(5.3em * 5);
-  max-height: 35em
+  max-height: 35em;
   position: relative;
   min-width: 10em;
   overflow-y: scroll;
   box-sizing: border-box;
   transform: translateY(-1em);
 }
-#noor_response>div {
+
+#noor_response > div {
   position: absolute;
   bottom: 0;
   padding: .7em;
@@ -161,11 +162,12 @@ section > * {
   width: 100%;
   text-align: center;
   box-sizing: border-box;
-  background: rgba(195,215,264, .5);
-  border: 1px solid rgba(0,0,0,.2);
+  background: rgba(195, 215, 264, .5);
+  border: 1px solid rgba(0, 0, 0, .2);
   border-radius: .5em;
   overflow-y: scroll;
 }
-#noor_response>div:empty {
-  visibility: hidden;
+
+#noor_response > div:empty {
+  display: none; /* Instead of using visibility: hidden, use display: none to hide empty div */
 }
