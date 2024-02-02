@@ -147,7 +147,7 @@ section > * {
   max-height: 35em
   position: relative;
   min-width: 10em;
-  overflow: hidden;
+  overflow-y: scroll;
   box-sizing: border-box;
   transform: translateY(-1em);
 }
@@ -164,7 +164,7 @@ section > * {
   background: rgba(195,215,264, .5);
   border: 1px solid rgba(0,0,0,.2);
   border-radius: .5em;
-  overflow: auto;
+  overflow-y: scroll;
 }
 #noor_response>div:empty {
   visibility: hidden;
