@@ -32,6 +32,7 @@ import com.google.cloud.vertexai.api.GenerateContentResponse;
 import com.google.cloud.vertexai.generativeai.preview.ChatSession;
 import com.google.cloud.vertexai.generativeai.preview.GenerativeModel;
 import com.google.cloud.vertexai.generativeai.preview.ResponseHandler;
+import com.google.cloud.generativeai.GenerationConfig;
 import io.grpc.auth.ClientAuthInterceptor;
 import org.eclipse.jetty.websocket.api.WebSocketAdapter;
 
@@ -66,6 +67,9 @@ public class TranscribeSocket extends WebSocketAdapter
   private ChatSession chatSession; // Assuming chatSession is needed across multiple invocations
   // Initialize client that will be used to send requests. This client only needs
   // to be created once, and can be reused for multiple requests.
+  // Create a GenerationConfig object
+  GenerationConfig config = new GenerationConfig();
+  config.setMaxOutputTokens(50);
 
 
   public TranscribeSocket() {
@@ -75,7 +79,7 @@ public class TranscribeSocket extends WebSocketAdapter
     public void chatDiscussion(String projectId, String location, String modelName, String message) {
         try (VertexAI vertexAI = new VertexAI(projectId, location)) {
                 GenerateContentResponse response;
-                GenerativeModel model = new GenerativeModel(modelName, vertexAI);
+                GenerativeModel model = new GenerativeModel(modelName, vertexAI,config);
                 chatSession = new ChatSession(model);
                 response = chatSession.sendMessage("Assume you are Chatbot robot in Zewail city university called NOOR and your are made by a team of reshearchers lead by dr mostafa el shafii shortly answer: ");
                 response = chatSession.sendMessage(message);
