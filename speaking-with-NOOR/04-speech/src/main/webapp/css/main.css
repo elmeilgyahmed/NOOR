@@ -164,6 +164,7 @@ section > * {
   background: rgba(195,215,264, .5);
   border: 1px solid rgba(0,0,0,.2);
   border-radius: .5em;
+  overflow: auto;
 }
 #noor_response>div:empty {
   visibility: hidden;
