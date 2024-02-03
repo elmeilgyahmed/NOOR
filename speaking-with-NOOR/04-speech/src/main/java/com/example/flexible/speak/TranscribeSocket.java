@@ -94,8 +94,13 @@ public class TranscribeSocket extends WebSocketAdapter
                 responseStream.forEach(responseItem -> {
                     logger.info("NOOR RESPONSE " + ResponseHandler.getText(responseItem));
                     String vertexResponse = ResponseHandler.getText(responseItem);
-                    getRemote().sendString(gson.toJson(vertexResponse));
-                    });}                // ----------------------------------------------
+                    try {
+                            getRemote().sendString(gson.toJson(vertexResponse));
+                    } catch (IOException e) {
+                        logger.error("IOException while sending string: " + e.getMessage());
+                // Handle the error appropriately, e.g., close the connection or log the error
+                    }
+                });}                // ----------------------------------------------
                  // Send the response back to the client
                  //String vertexResponse = ResponseHandler.getText(response);
 
