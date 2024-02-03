@@ -110,7 +110,7 @@ public class TranscribeSocket extends WebSocketAdapter
             ByteString audioContent = response.getAudioContent();
             
             Files.write(
-                Paths.get("NOOR/speaking-with-NOOR/04-speech/src/main/webapp/js/output.wav"),
+                Paths.get("/NOOR/speaking-with-NOOR/04-speech/src/main/webapp/js/output.wav"),
                 audioContent.toByteArray()
             );
 
