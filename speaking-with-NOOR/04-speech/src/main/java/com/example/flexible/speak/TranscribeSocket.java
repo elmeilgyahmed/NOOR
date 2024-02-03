@@ -51,6 +51,7 @@ import java.util.logging.Logger;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.file.Files;
 
 public class TranscribeSocket extends WebSocketAdapter
     implements ApiStreamObserver<StreamingRecognizeResponse> {
