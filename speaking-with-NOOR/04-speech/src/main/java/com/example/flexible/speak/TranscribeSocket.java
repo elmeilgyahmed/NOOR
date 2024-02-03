@@ -84,25 +84,25 @@ public class TranscribeSocket extends WebSocketAdapter
 
 
       public static void GoogleTextToSpeech(String text) {
-        try (TextToSpeechClient textToSpeechClient = TextToSpeechClient.create()) {
+        try (com.google.cloud.texttospeech.v1.TextToSpeechClient textToSpeechClient = com.google.cloud.texttospeech.v1.TextToSpeechClient.create()) {
 
             // Build the synthesis input
-            SynthesisInput synthesisInput = SynthesisInput.newBuilder().setText(text).build();
+            com.google.cloud.texttospeech.v1.SynthesisInput synthesisInput = com.google.cloud.texttospeech.v1.SynthesisInput.newBuilder().setText(text).build();
 
             // Build the voice request
-            VoiceSelectionParams voice =
-                    VoiceSelectionParams.newBuilder()
+            com.google.cloud.texttospeech.v1.VoiceSelectionParams voice =
+                    com.google.cloud.texttospeech.v1.VoiceSelectionParams.newBuilder()
                             .setLanguageCode("ar-XA") // Adjust the language code as needed
                             .setName("ar-XA-Wavenet-D") // Adjust the voice name as needed
                             .build();
 
             // Select the type of audio file
-            AudioConfig audioConfig =
-                    AudioConfig.newBuilder().setAudioEncoding(AudioEncoding.LINEAR16).build();
+            com.google.cloud.texttospeech.v1.AudioConfig audioConfig =
+                    AudioConfig.newBuilder().setAudioEncoding(com.google.cloud.texttospeech.v1.AudioEncoding.LINEAR16).build();
 
             // Perform the text-to-speech synthesis
-            SynthesizeSpeechResponse response =
-                    textToSpeechClient.synthesizeSpeech(synthesisInput, voice, audioConfig);
+            com.google.cloud.texttospeech.v1.SynthesizeSpeechResponse response =
+                    com.google.cloud.texttospeech.v1.textToSpeechClient.synthesizeSpeech(synthesisInput, voice, audioConfig);
 
             // Get the audio content from the response
             ByteString audioContent = response.getAudioContent();
