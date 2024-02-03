@@ -93,7 +93,8 @@ public class TranscribeSocket extends WebSocketAdapter
                 if (responseStream != null) {
                 responseStream.forEach(responseItem -> {
                     logger.info("NOOR RESPONSE " + ResponseHandler.getText(responseItem));
-                    getRemote().sendString(gson.toJson(ResponseHandler.getText(responseItem)));
+                    String vertexResponse = ResponseHandler.getText(responseItem);
+                    getRemote().sendString(gson.toJson(vertexResponse));
                     });}                // ----------------------------------------------
                  // Send the response back to the client
                  //String vertexResponse = ResponseHandler.getText(response);
