@@ -150,6 +150,11 @@ section > * {
   overflow-y: scroll;
   box-sizing: border-box;
   transform: translateY(-1em);
+  white-space: pre-line; /* Preserve line breaks */
+  font-family: monospace; /* Use a monospaced font for consistent character widths */
+  overflow: hidden; /* Prevents text from getting scrambled */
+  border-right: 2px solid black; /* Adds a blinking cursor effect */
+  animation: typing 3s steps(40, end), blink-caret 0.5s step-end infinite;
 }
 
 #noor_response > div {
@@ -166,7 +171,28 @@ section > * {
   border: 1px solid rgba(0, 0, 0, .2);
   border-radius: .5em;
   overflow-y: scroll;
-}
+  white-space: pre-line; /* Preserve line breaks */
+  font-family: monospace; /* Use a monospaced font for consistent character widths */
+  overflow: hidden; /* Prevents text from getting scrambled */
+  border-right: 2px solid black; /* Adds a blinking cursor effect */
+  animation: typing 3s steps(40, end), blink-caret 0.5s step-end infinite;}
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: auto;
+            }
+        }
+
+        @keyframes blink-caret {
+            from, to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: black;
+            }
 
 #noor_response > div:empty {
   display: none; /* Instead of using visibility: hidden, use display: none to hide empty div */
