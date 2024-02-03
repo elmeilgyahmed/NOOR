@@ -87,8 +87,9 @@ public class TranscribeSocket extends WebSocketAdapter
                 .build();
                 GenerativeModel model = new GenerativeModel(modelName,generationConfig,vertexAI);
                 chatSession = new ChatSession(model);
-                //response = chatSession.sendMessageStream("Assume you are Chatbot robot in Zewail city university called NOOR and your are made by a team of reshearchers lead by dr mostafa el shafii shortly answer: ");
-                //response = chatSession.sendMessageStream(message);
+                response = chatSession.sendMessage("Assume you are Chatbot robot in Zewail city university called NOOR and your are made by a team of reshearchers lead by dr mostafa el shafii shortly answer: ");
+                response = chatSession.sendMessage(message);
+                /**
                 ResponseStream<GenerateContentResponse> responseStream = chatSession.sendMessageStream(message);
                 if (responseStream != null) {
                 responseStream.forEach(responseItem -> {
@@ -101,21 +102,16 @@ public class TranscribeSocket extends WebSocketAdapter
                 // Handle the error appropriately, e.g., close the connection or log the error
                     }
                 });}                // ----------------------------------------------
+                */
                  // Send the response back to the client
-                 //String vertexResponse = ResponseHandler.getText(response);
+                 String vertexResponse = ResponseHandler.getText(response);
 
-                //getRemote().sendString(gson.toJson(vertexResponse));
+                getRemote().sendString(gson.toJson(vertexResponse));
 
                 // Trigger the 'response' event on the client side
                 //getRemote().sendString("{'event': 'response', 'data': '" + gson.toJson(vertexResponse) + "'}");
 
-                //logger.info("NOOR RESPONSE " + vertexResponse);
-
-                // Trigger the 'response' event on the client side
-                 // getRemote().sendString("{'event': 'response', 'data': '" + gson.toJson( ResponseHandler.getText(response)) + "'}");
-                // ----------------------------------------------    
-                //GenerateContentResponse response = chatSession.sendMessage(message);
-                //logger.info("SECOND RUN RESPONSE " + ResponseHandler.getText(response));
+                logger.info("NOOR RESPONSE " + vertexResponse);
         } catch (IOException e) {
         logger.log(Level.WARNING, "Error in Websockts", e);
         }
