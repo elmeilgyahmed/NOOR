@@ -97,7 +97,7 @@ public class TranscribeSocket extends WebSocketAdapter
                             .build();
 
             // Select the type of audio file
-                com.google.cloud.texttospeech.v1.AudioEncoding audioencoder = new com.google.cloud.texttospeech.v1.AudioEncoding();
+                com.google.cloud.texttospeech.v1.AudioEncoding audioencoder =  com.google.cloud.texttospeech.v1.AudioEncoding();
                AudioConfig audioConfig =
                     AudioConfig.newBuilder().setAudioEncoding(audioencoder.LINEAR16).build();
 
