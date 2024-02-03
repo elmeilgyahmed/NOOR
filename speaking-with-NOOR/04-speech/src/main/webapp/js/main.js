@@ -284,6 +284,19 @@
     };
     response.el.appendChild(response.current);
     */
+      function typeWriter(text, speed, outputElement) {
+            let index = 0;
+
+            function type() {
+                if (index < text.length) {
+                    outputElement.innerHTML += text.charAt(index);
+                    index++;
+                    setTimeout(type, speed);
+                }
+            }
+
+            type();
+        }
 
     
     /**
@@ -306,7 +319,7 @@
 
       if (typeof result === "string"){
            var responseElement = document.getElementById('noor_response');
-          responseElement.innerHTML = result;
+            typeWriter(result, 100, responseElement);
       }
         
    
