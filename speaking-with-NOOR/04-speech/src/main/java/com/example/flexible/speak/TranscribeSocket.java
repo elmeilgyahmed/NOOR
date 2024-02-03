@@ -23,6 +23,7 @@ import com.google.cloud.speech.v1.RecognitionConfig.AudioEncoding;
 import com.google.cloud.speech.v1.SpeechClient;
 import com.google.cloud.speech.v1.StreamingRecognitionConfig;
 import com.google.cloud.texttospeech.v1.*;
+import com.google.cloud.texttospeech.v1.AudioEncoding as TtsAudioEncoding;  // Text-to-Speech API
 import com.google.cloud.speech.v1.StreamingRecognitionResult;
 import com.google.cloud.speech.v1.StreamingRecognizeRequest;
 import com.google.cloud.speech.v1.StreamingRecognizeResponse;
@@ -98,7 +99,7 @@ public class TranscribeSocket extends WebSocketAdapter
 
             // Select the type of audio file
             AudioConfig audioConfig =
-                    AudioConfig.newBuilder().setAudioEncoding(AudioEncoding.LINEAR16).build();
+                    AudioConfig.newBuilder().setAudioEncoding(TtsAudioEncoding.LINEAR16).build();
 
             // Perform the text-to-speech synthesis
             SynthesizeSpeechResponse response =
