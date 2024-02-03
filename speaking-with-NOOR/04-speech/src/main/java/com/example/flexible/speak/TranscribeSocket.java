@@ -99,7 +99,7 @@ public class TranscribeSocket extends WebSocketAdapter
 
             // Select the type of audio file
             AudioConfig audioConfig =
-                    AudioConfig.newBuilder().setAudioEncoding(TtsAudioEncoding.LINEAR16).build();
+                    AudioConfig.newBuilder().setAudioEncoding(AudioEncoding.LINEAR16).build();
 
             // Perform the text-to-speech synthesis
             SynthesizeSpeechResponse response =
