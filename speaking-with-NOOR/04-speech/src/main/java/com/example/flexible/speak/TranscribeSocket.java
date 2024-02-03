@@ -97,9 +97,10 @@ public class TranscribeSocket extends WebSocketAdapter
                             .build();
 
             // Select the type of audio file
-                com.google.cloud.texttospeech.v1.AudioEncoding audioencoder =  com.google.cloud.texttospeech.v1.AudioEncoding();
+
+                com.google.cloud.texttospeech.v1.AudioEncoding audioencoder =  com.google.cloud.texttospeech.v1.AudioEncoding.LINEAR16;
                AudioConfig audioConfig =
-                    AudioConfig.newBuilder().setAudioEncoding(audioencoder.LINEAR16).build();
+                    AudioConfig.newBuilder().setAudioEncoding(audioencoder).build();
 
             // Perform the text-to-speech synthesis
             SynthesizeSpeechResponse response =
@@ -203,9 +204,11 @@ public class TranscribeSocket extends WebSocketAdapter
         requestObserver = callable.bidiStreamingCall(this);
         // Build and send a StreamingRecognizeRequest containing the parameters for
         // processing the audio.
+        RecognitionConfig.AudioEncoding audioEncoding = RecognitionConfig.AudioEncoding.LINEAR16;
+
         RecognitionConfig config =
             RecognitionConfig.newBuilder()
-            .setEncoding(AudioEncoding.LINEAR16)
+            .setEncoding(audioEncoding)
             .setSampleRateHertz(constraints.sampleRate)
             .setLanguageCode("ar-EG")
             .build();
