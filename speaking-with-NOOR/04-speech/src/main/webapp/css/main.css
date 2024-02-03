@@ -154,7 +154,7 @@ section > * {
   font-family: monospace; /* Use a monospaced font for consistent character widths */
   border-right: 2px solid black; /* Adds a blinking cursor effect */
   overflow: hidden; /* Prevents text from getting scrambled */
-  animation: typing 3s steps(40, end), blink-caret 0.5s step-end infinite;
+  animation: typing 3s steps(40, end);
 }
 
 #noor_response > div {
@@ -175,7 +175,7 @@ section > * {
   font-family: monospace; /* Use a monospaced font for consistent character widths */
   border-right: 2px solid black; /* Adds a blinking cursor effect */
   overflow: hidden; /* Prevents text from getting scrambled */
-  animation: typing 3s steps(40, end), blink-caret 0.5s step-end infinite;}
+  animation: typing 3s steps(40, end);}
 
         @keyframes typing {
             from {
@@ -186,13 +186,6 @@ section > * {
             }
         }
 
-        @keyframes blink-caret {
-            from, to {
-                border-color: transparent;
-            }
-            50% {
-                border-color: green;
-            }
 
 #noor_response > div:empty {
   display: none; /* Instead of using visibility: hidden, use display: none to hide empty div */
