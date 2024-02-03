@@ -52,6 +52,8 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Paths;
+
 
 public class TranscribeSocket extends WebSocketAdapter
     implements ApiStreamObserver<StreamingRecognizeResponse> {
@@ -77,6 +79,49 @@ public class TranscribeSocket extends WebSocketAdapter
   public TranscribeSocket() {
     gson = new Gson();
   }
+
+
+
+
+      public static void GoogleTextToSpeech(String text) {
+        try (TextToSpeechClient textToSpeechClient = TextToSpeechClient.create()) {
+
+            // Build the synthesis input
+            SynthesisInput synthesisInput = SynthesisInput.newBuilder().setText(text).build();
+
+            // Build the voice request
+            VoiceSelectionParams voice =
+                    VoiceSelectionParams.newBuilder()
+                            .setLanguageCode("ar-XA") // Adjust the language code as needed
+                            .setName("ar-XA-Wavenet-D") // Adjust the voice name as needed
+                            .build();
+
+            // Select the type of audio file
+            AudioConfig audioConfig =
+                    AudioConfig.newBuilder().setAudioEncoding(AudioEncoding.LINEAR16).build();
+
+            // Perform the text-to-speech synthesis
+            SynthesizeSpeechResponse response =
+                    textToSpeechClient.synthesizeSpeech(synthesisInput, voice, audioConfig);
+
+            // Get the audio content from the response
+            ByteString audioContent = response.getAudioContent();
+            
+            Files.write(
+                Paths.get("NOOR/speaking-with-NOOR/04-speech/src/main/webapp/js/output.wav"),
+                audioContent.toByteArray(),
+                StandardOpenOption.TRUNCATE_EXISTING
+            );
+
+
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+        
     // called when we have a message to vertex api
     public void chatDiscussion(String projectId, String location, String modelName, String message) {
         try (VertexAI vertexAI = new VertexAI(projectId, location)) {
@@ -114,6 +159,12 @@ public class TranscribeSocket extends WebSocketAdapter
                 //getRemote().sendString("{'event': 'response', 'data': '" + gson.toJson(vertexResponse) + "'}");
 
                 logger.info("NOOR RESPONSE " + vertexResponse);
+                // -------------
+                if (vertexResponse != null){
+                    GoogleTextToSpeech(vertexResponse);
+                }
+
+                //-----------
         } catch (IOException e) {
         logger.log(Level.WARNING, "Error in Websockts", e);
         }
