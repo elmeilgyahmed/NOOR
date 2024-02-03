@@ -22,6 +22,7 @@ import com.google.cloud.speech.v1.RecognitionConfig;
 import com.google.cloud.speech.v1.RecognitionConfig.AudioEncoding;
 import com.google.cloud.speech.v1.SpeechClient;
 import com.google.cloud.speech.v1.StreamingRecognitionConfig;
+import com.google.cloud.texttospeech.v1.*;
 import com.google.cloud.speech.v1.StreamingRecognitionResult;
 import com.google.cloud.speech.v1.StreamingRecognizeRequest;
 import com.google.cloud.speech.v1.StreamingRecognizeResponse;
