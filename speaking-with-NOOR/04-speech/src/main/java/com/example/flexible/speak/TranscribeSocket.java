@@ -97,7 +97,7 @@ public class TranscribeSocket extends WebSocketAdapter
                     try {
                             getRemote().sendString(gson.toJson(vertexResponse));
                     } catch (IOException e) {
-                        logger.error("IOException while sending string: " + e.getMessage());
+                        logger.info("IOException while sending string: ");
                 // Handle the error appropriately, e.g., close the connection or log the error
                     }
                 });}                // ----------------------------------------------
