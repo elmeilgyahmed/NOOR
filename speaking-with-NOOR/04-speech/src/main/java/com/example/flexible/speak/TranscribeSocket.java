@@ -83,7 +83,7 @@ public class TranscribeSocket extends WebSocketAdapter
                 .setTemperature(0.9F)
                 .setTopK(16)
                 .setTopP(0.1f)
-                .setMaxOutputTokens(20)
+                .setMaxOutputTokens(200)
                 .build();
                 GenerativeModel model = new GenerativeModel(modelName,generationConfig,vertexAI);
                 chatSession = new ChatSession(model);
