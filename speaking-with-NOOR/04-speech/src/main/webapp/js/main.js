@@ -285,6 +285,7 @@
     response.el.appendChild(response.current);
     */
       function typeWriter(text, speed, outputElement) {
+            outputElement.innerHTML = ''; // Clear old text
             let index = 0;
 
             function type() {
@@ -319,7 +320,7 @@
 
       if (typeof result === "string"){
            var responseElement = document.getElementById('noor_response');
-            typeWriter(result, 100, responseElement);
+            typeWriter(result, 180, responseElement);
       }
         
    
