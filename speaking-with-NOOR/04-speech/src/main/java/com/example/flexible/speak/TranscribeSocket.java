@@ -32,6 +32,7 @@ import com.google.cloud.vertexai.api.GenerateContentResponse;
 import com.google.cloud.vertexai.generativeai.preview.ChatSession;
 import com.google.cloud.vertexai.generativeai.preview.GenerativeModel;
 import com.google.cloud.vertexai.generativeai.preview.ResponseHandler;
+import com.google.cloud.vertexai.generativeai.preview.ResponseStream;
 import com.google.cloud.vertexai.api.GenerationConfig;
 import io.grpc.auth.ClientAuthInterceptor;
 import org.eclipse.jetty.websocket.api.WebSocketAdapter;
@@ -86,19 +87,22 @@ public class TranscribeSocket extends WebSocketAdapter
                 .build();
                 GenerativeModel model = new GenerativeModel(modelName,generationConfig,vertexAI);
                 chatSession = new ChatSession(model);
-                response = chatSession.sendMessage("Assume you are Chatbot robot in Zewail city university called NOOR and your are made by a team of reshearchers lead by dr mostafa el shafii shortly answer: ");
-                response = chatSession.sendMessage(message);
-                logger.info("NOOR RESPONSE " + ResponseHandler.getText(response));
-                // ----------------------------------------------
+                //response = chatSession.sendMessageStream("Assume you are Chatbot robot in Zewail city university called NOOR and your are made by a team of reshearchers lead by dr mostafa el shafii shortly answer: ");
+                //response = chatSession.sendMessageStream(message);
+                ResponseStream<GenerateContentResponse> responseStream = chatSession.sendMessageStream(message);
+                if (responseStream != null) {
+                responseStream.forEach(responseItem -> {
+                    logger.info("NOOR RESPONSE " + ResponseHandler.getText(responseItem));
+                });                // ----------------------------------------------
                  // Send the response back to the client
-                 String vertexResponse = ResponseHandler.getText(response);
+                 //String vertexResponse = ResponseHandler.getText(response);
 
-                 getRemote().sendString(gson.toJson(vertexResponse));
+                //getRemote().sendString(gson.toJson(vertexResponse));
 
                 // Trigger the 'response' event on the client side
-                getRemote().sendString("{'event': 'response', 'data': '" + gson.toJson(vertexResponse) + "'}");
+                //getRemote().sendString("{'event': 'response', 'data': '" + gson.toJson(vertexResponse) + "'}");
 
-                logger.info("NOOR RESPONSE " + vertexResponse);
+                //logger.info("NOOR RESPONSE " + vertexResponse);
 
                 // Trigger the 'response' event on the client side
                  // getRemote().sendString("{'event': 'response', 'data': '" + gson.toJson( ResponseHandler.getText(response)) + "'}");
@@ -109,33 +113,7 @@ public class TranscribeSocket extends WebSocketAdapter
         logger.log(Level.WARNING, "Error in Websockts", e);
         }
     }
-
-  /**
-   * Called to add incoming transcripts to one whole message .
-   */        
-public  String arrayToString(List<String> list) {
-        StringBuilder result = new StringBuilder();
-
-        for (int i = 0; i < list.size(); i++) {
-            result.append(list.get(i));
-
-            // Add a space between words, except for the last word
-            if (i < list.size() - 1) {
-                result.append(" ");
-            }
-        }
-
-        return result.toString();
-    }
-   public  String arrayToStringWithoutDuplicates(List<String> list) {
-        List<String> uniqueList = removeDuplicates(list);
-        return arrayToString(uniqueList);
-    }
-
-    private  List<String> removeDuplicates(List<String> list) {
-        Set<String> uniqueSet = new LinkedHashSet<>(list);
-        return List.copyOf(uniqueSet);
-    }     
+  
 
   /**
    * Called when the client sends this server some raw bytes (ie audio data).
