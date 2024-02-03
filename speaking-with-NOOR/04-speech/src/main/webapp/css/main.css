@@ -152,7 +152,6 @@ section > * {
   transform: translateY(-1em);
   white-space: pre-line; /* Preserve line breaks */
   font-family: monospace; /* Use a monospaced font for consistent character widths */
-  overflow: hidden; /* Prevents text from getting scrambled */
   animation: typing 3s steps(40, end);
 }
 
@@ -172,7 +171,6 @@ section > * {
   overflow-y: scroll;
   white-space: pre-line; /* Preserve line breaks */
   font-family: monospace; /* Use a monospaced font for consistent character widths */
-  overflow: hidden; /* Prevents text from getting scrambled */
   animation: typing 1s steps(40, end);}
 
         @keyframes typing {
