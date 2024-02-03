@@ -320,7 +320,7 @@
 
       if (typeof result === "string"){
            var responseElement = document.getElementById('noor_response');
-            typeWriter(result, 180, responseElement);
+            typeWriter(result, 30, responseElement);
       }
         
    
