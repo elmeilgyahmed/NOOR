@@ -111,14 +111,12 @@ public class TranscribeSocket extends WebSocketAdapter
             try {
             Files.write(
                 Paths.get("/NOOR/speaking-with-NOOR/04-speech/src/main/webapp/js/output.wav"),
-                audioContent.toByteArray()
+                audioContent.toByteArray();
                 )
             }
             catch (IOException e) {
                 e.printStackTrace();
             }
-                
-            );
 
 
             
