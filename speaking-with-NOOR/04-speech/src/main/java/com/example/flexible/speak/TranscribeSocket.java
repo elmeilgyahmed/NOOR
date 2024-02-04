@@ -121,7 +121,7 @@ public  void sendAudioToClient(byte[] audioData) {
     if (getSession() != null && getSession().isOpen()) {
         try {
             getSession().getRemote().sendBytesByFuture(java.nio.ByteBuffer.wrap(audioData));
-            logger.info("audio sent to client");
+            logger.info("AUDIO IN PROCESS");
         } catch (Exception e) {
             logger.log(Level.WARNING, "Error sending audio to client", e);
         }
@@ -165,7 +165,7 @@ public  void sendAudioToClient(byte[] audioData) {
                 // Trigger the 'response' event on the client side
                 //getRemote().sendString("{'event': 'response', 'data': '" + gson.toJson(vertexResponse) + "'}");
 
-                logger.info("NOOR RESPONSE " + vertexResponse);
+                logger.info("NOOR RESPONSE IN PROCESS");
                 // -------------
                 if (vertexResponse != null){
                     GoogleTextToSpeech(vertexResponse);
@@ -277,7 +277,7 @@ public  void sendAudioToClient(byte[] audioData) {
       getRemote().sendString(gson.toJson(result));
       if (result.getIsFinal()){
             //wordsList.add(transcript);
-          logger.info("Incoming Transcipt " + result.getAlternatives(0).getTranscript());  
+          logger.info("INCOMING TRANSCRIPT ");  
           chatDiscussion(projectId,location,modelName,transcript);
         }
         /**
