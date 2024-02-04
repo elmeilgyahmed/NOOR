@@ -304,6 +304,12 @@
      * This function is called with the transcription result from the server.
      */
     function onTranscription(e) {
+      var audio= resulte.data//===================================================================================================
+        if(audio instanceof Uint8Array ||  audio instanceof Blob){
+        // If the received data is a Blob, it contains the audio data
+        processAudioByteArray(e.data);
+      } 
+      
       var result = JSON.parse(e.data);
       if (result.alternatives_) {
         transcript.current.innerHTML = result.alternatives_[0].transcript_;
@@ -317,11 +323,7 @@
            var responseElement = document.getElementById('noor_response');
             typeWriter(result, 30, responseElement);
       }
-      //===================================================================================================
-        else {
-        // If the received data is a Blob, it contains the audio data
-        processAudioByteArray(e.data);
-      } 
+
         
    
     }
