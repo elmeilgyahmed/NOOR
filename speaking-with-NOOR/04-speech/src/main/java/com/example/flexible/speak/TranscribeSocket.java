@@ -83,7 +83,7 @@ public class TranscribeSocket extends WebSocketAdapter
 
 
 
-      public static void GoogleTextToSpeech(String text) {
+      public  void GoogleTextToSpeech(String text) {
         try (TextToSpeechClient textToSpeechClient = TextToSpeechClient.create()) {
 
             // Build the synthesis input
