@@ -322,6 +322,11 @@
            var responseElement = document.getElementById('noor_response');
             typeWriter(result, 30, responseElement);
       }
+      //===================================================================================================
+        if (result.audioContent_) {
+    // Play the received audio content using Web Audio API
+    playAudio(result.audioContent_);
+  }
         
    
     }
@@ -343,6 +348,26 @@
       }
     
     }
+    //-------------------------------------------------------------------------------------------
+
+    function playAudio(audioContent) {
+  // Create an audio context
+  var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+  // Create an audio buffer from the received audio content
+  audioContext.decodeAudioData(audioContent.buffer, function(buffer) {
+    // Create a buffer source node
+    var source = audioContext.createBufferSource();
+    source.buffer = buffer;
+
+    // Connect the source node to the audio context's destination (speakers)
+    source.connect(audioContext.destination);
+
+    // Start playing the audio
+    source.start();
+  });
+}
+
 
     // -----------------------------------
 
