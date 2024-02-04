@@ -320,7 +320,7 @@
       //===================================================================================================
         else {
         // If the received data is a Blob, it contains the audio data
-        processAudioBlob(e.data);
+        processAudioByteArray(e.data);
       } 
         
    
@@ -345,21 +345,26 @@
     }
     
     //-------------------------------------------------------------------------------------------
-function processAudioBlob(blob) {
-      var audio = new Audio();
-      var objectURL = URL.createObjectURL(blob);
+function processAudioByteArray(audioByteArray) {
+  // Handle the received audio byte array
+  // Example: Play the audio using Web Audio API or other audio playback libraries
+  // ...
 
-      // Set the audio source to the Blob's object URL
-      audio.src = objectURL;
+  // Here, you might use Web Audio API to create an audio buffer and play it
+  var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  var audioBuffer;
 
-      // Append the audio element to the document body or any other container
-      document.body.appendChild(audio);
+  audioContext.decodeAudioData(audioByteArray.buffer, function (buffer) {
+    audioBuffer = buffer;
 
-      // Play the audio
-      audio.play().catch(function (error) {
-        console.error('Error playing audio:', error);
-      });
-    }
+    // Now you can use audioBuffer to perform playback or other operations
+    // Example: Create an AudioBufferSourceNode and connect it to the audio context
+    var sourceNode = audioContext.createBufferSource();
+    sourceNode.buffer = audioBuffer;
+    sourceNode.connect(audioContext.destination);
+    sourceNode.start();
+  });
+}
  
 
 
