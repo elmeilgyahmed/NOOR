@@ -108,6 +108,9 @@ public class TranscribeSocket extends WebSocketAdapter
 
             // Get the audio content from the response
             ByteString audioContent = response.getAudioContent();
+            //-------------------------------------------------------------------------------------------------
+            // Send the audio content to the client through the WebSocket
+            sendAudioToClient(audioContent.toByteArray());
             try {
                 /*
             Files.write(
@@ -130,7 +133,16 @@ public class TranscribeSocket extends WebSocketAdapter
             e.printStackTrace();
         }
     }
-
+//===============================================================================================
+        private static void sendAudioToClient(byte[] audioData) {
+    if (getSession() != null && getSession().isOpen()) {
+        try {
+            getSession().getRemote().sendBytesByFuture(java.nio.ByteBuffer.wrap(audioData));
+        } catch (Exception e) {
+            logger.log(Level.WARNING, "Error sending audio to client", e);
+        }
+    }
+}
 
         
     // called when we have a message to vertex api
