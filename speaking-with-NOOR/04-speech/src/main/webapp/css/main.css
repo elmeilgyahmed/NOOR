@@ -143,8 +143,8 @@ section > * {
   font-size: 1.2em;
   line-height: 1.3em;
   max-width: 50em;
-  height: calc(5.3em * 5);
-  max-height: 35em;
+  height: calc(5.3em * 3);
+  max-height: 28em;
   position: relative;
   min-width: 10em;
   overflow-y: scroll;
