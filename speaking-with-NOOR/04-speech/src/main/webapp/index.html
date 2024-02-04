@@ -471,11 +471,26 @@ https://www.tooplate.com/view/2128-tween-agency
                                     <br>
                                     <label>Noor response audio: </label>
                                     <br>
-                                    <br>
-                                    <audio controls id="audio-example">
-                                        <source src="../../../NOOR/speaking-with-NOOR/04-speech/output.wav">
-                                    </audio>
-                                    <ul class="pricing-list">
+                                     <audio controls autoplay id="audio-example">
+                                        <source id="audioSource" src="../../../output.wav">
+                                     </audio>
+                                     
+                                     <button onclick="changeAndPlayAudio()">Play loud</button>
+                                     
+                                     <script>
+                                     function changeAndPlayAudio() {
+                                         // Get the audio source element
+                                         var audioSource = document.getElementById('audioSource');
+                                     
+                                         // Set the new source file
+                                         audioSource.src = "../../../output.wav";
+                                     
+                                         // Load and play the new audio file
+                                         document.getElementById('audio-example').load();
+                                         document.getElementById('audio-example').play();
+                                     }
+                                     // Function to trigger button click
+                                     </script>                                    <ul class="pricing-list">
                                         <li class="pricing-list-item">Completely Digital</li>
                                         <li class="pricing-list-item">Everything managed online</li>
                                         <li class="pricing-list-item">Full Ecommerce Features</li>
