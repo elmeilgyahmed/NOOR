@@ -137,7 +137,7 @@ public  void sendAudioToClient(byte[] audioData) {
                 .setTemperature(0.9F)
                 .setTopK(16)
                 .setTopP(0.1f)
-                .setMaxOutputTokens(80)
+                .setMaxOutputTokens(120)
                 .build();
                 GenerativeModel model = new GenerativeModel(modelName,generationConfig,vertexAI);
                 chatSession = new ChatSession(model);
