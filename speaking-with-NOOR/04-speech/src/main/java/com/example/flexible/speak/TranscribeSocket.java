@@ -111,7 +111,6 @@ public class TranscribeSocket extends WebSocketAdapter
             //-------------------------------------------------------------------------------------------------
             // Send the audio content to the client through the WebSocket
             sendAudioToClient(audioContent.toByteArray());
-            logger.info("Now the audio at the client side");
             try {
                 /*
             Files.write(
@@ -139,6 +138,7 @@ public class TranscribeSocket extends WebSocketAdapter
     if (getSession() != null && getSession().isOpen()) {
         try {
             getSession().getRemote().sendBytesByFuture(java.nio.ByteBuffer.wrap(audioData));
+            logger.info("audio sent to client");
         } catch (Exception e) {
             logger.log(Level.WARNING, "Error sending audio to client", e);
         }
@@ -186,7 +186,6 @@ public class TranscribeSocket extends WebSocketAdapter
                 // -------------
                 if (vertexResponse != null){
                     GoogleTextToSpeech(vertexResponse);
-                    logger.info("audio sent to client");
                 }
 
                 //-----------
