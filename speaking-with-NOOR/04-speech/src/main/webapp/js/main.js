@@ -304,15 +304,10 @@
      * This function is called with the transcription result from the server.
      */
     function onTranscription(e) {
-        if(e.data instanceof Uint8Array){
-        // If the received data is a Blob, it contains the audio data
-          console.log("audio type is Unit8Array");
-        processAudioByteArray(e.data);
-      } 
               if(e.data instanceof Blob){
         // If the received data is a Blob, it contains the audio data
         console.log("audio type is blob");
-        processAudioByteArray(e.data);
+        processAudioBlob(e.data);
       }     
       else{
       var result = JSON.parse(e.data);
@@ -352,23 +347,28 @@
     }
     
     //-------------------------------------------------------------------------------------------
-function processAudioByteArray(audioByteArray) {
-  // Handle the received audio byte array
-  // Example: Play the audio using Web Audio API or other audio playback libraries
-  // ...
+function processAudioBlob(blob) {
+    var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    
+    var reader = new FileReader();
+    reader.onloadend = function () {
+        // Convert the ArrayBuffer to an ArrayBufferView
+        var arrayBuffer = reader.result;
+        
+        // Decode the audio data
+        audioContext.decodeAudioData(arrayBuffer, function (buffer) {
+            // Play the audio
+            var source = audioContext.createBufferSource();
+            source.buffer = buffer;
+            source.connect(audioContext.destination);
+            source.start();
+        }, function (error) {
+            console.error('Error decoding audio data:', error);
+        });
+    };
 
-  // Here, you might use Web Audio API to create an audio buffer and play it
-  var audioContext = new (window.AudioContext || window.webkitAudioContext)();
-  var audioBuffer;
-  var buffer = audioByteArray instanceof ArrayBuffer ? audioByteArray : audioByteArray.buffer;
-  audioContext.decodeAudioData(buffer, function (buffer) {
-    const source = audioContext.createBufferSource();
-    source.buffer = buffer;
-    source.connect(audioContext.destination);
-    source.start();
-  }, function(err) {
-    console.error('Error decoding audio data:', err);
-  });
+    // Read the Blob as an ArrayBuffer
+    reader.readAsArrayBuffer(blob);
 }
  
 
