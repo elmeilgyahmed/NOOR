@@ -304,7 +304,7 @@
      * This function is called with the transcription result from the server.
      */
     function onTranscription(e) {
-      var audio= resulte.data//===================================================================================================
+      var audio= e.data//===================================================================================================
         if(audio instanceof Uint8Array ||  audio instanceof Blob){
         // If the received data is a Blob, it contains the audio data
         processAudioByteArray(e.data);
