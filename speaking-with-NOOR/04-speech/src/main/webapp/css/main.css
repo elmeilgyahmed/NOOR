@@ -60,7 +60,7 @@ section > * {
 .fft {
   position: absolute;
   z-index: 1;
-  top: 50%;
+  top: 80%;
   left: 50%;
   -webkit-box-reflect: below 5px -webkit-linear-gradient(top, transparent, transparent 50%, rgba(255,255,255,0.2));
 }
