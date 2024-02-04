@@ -102,7 +102,7 @@ public class TranscribeSocket extends WebSocketAdapter
                AudioConfig audioConfig =
                     AudioConfig.newBuilder().setAudioEncoding(audioencoder).build();
 
-            // Perform the text-to-speech synthesis
+            // Perform the text-to-speechsynthesis
             SynthesizeSpeechResponse response =
                     textToSpeechClient.synthesizeSpeech(synthesisInput, voice, audioConfig);
 
@@ -111,6 +111,7 @@ public class TranscribeSocket extends WebSocketAdapter
             //-------------------------------------------------------------------------------------------------
             // Send the audio content to the client through the WebSocket
             sendAudioToClient(audioContent.toByteArray());
+            logger.info("Now the audio at the client side");
             try {
                 /*
             Files.write(
@@ -185,6 +186,7 @@ public class TranscribeSocket extends WebSocketAdapter
                 // -------------
                 if (vertexResponse != null){
                     GoogleTextToSpeech(vertexResponse);
+                    logger.info("audio sent to client");
                 }
 
                 //-----------
