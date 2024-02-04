@@ -305,11 +305,6 @@
      */
     function onTranscription(e) {
       var result = JSON.parse(e.data);
-      console.log("ssssssssssssssssssss typee022e", result)
-
-      console.log("resssssssssult typee022e",typeof result)
-
-
       if (result.alternatives_) {
         transcript.current.innerHTML = result.alternatives_[0].transcript_;
       }
@@ -323,7 +318,7 @@
             typeWriter(result, 30, responseElement);
       }
       //===================================================================================================
-        if (e.data instanceof Blob) {
+        else {
         // If the received data is a Blob, it contains the audio data
         processAudioBlob(e.data);
       } 
