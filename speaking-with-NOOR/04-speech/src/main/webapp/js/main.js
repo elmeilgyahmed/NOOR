@@ -355,14 +355,12 @@ function processAudioByteArray(audioByteArray) {
   var audioBuffer;
 
   audioContext.decodeAudioData(audioByteArray.buffer, function (buffer) {
-    audioBuffer = buffer;
-
-    // Now you can use audioBuffer to perform playback or other operations
-    // Example: Create an AudioBufferSourceNode and connect it to the audio context
-    var sourceNode = audioContext.createBufferSource();
-    sourceNode.buffer = audioBuffer;
-    sourceNode.connect(audioContext.destination);
-    sourceNode.start();
+    const source = audioContext.createBufferSource();
+    source.buffer = buffer;
+    source.connect(audioContext.destination);
+    source.start();
+  }, function(err) {
+    console.error('Error decoding audio data:', err);
   });
 }
  
