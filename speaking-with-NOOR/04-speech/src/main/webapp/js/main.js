@@ -323,10 +323,10 @@
             typeWriter(result, 30, responseElement);
       }
       //===================================================================================================
-        if (result.audioContent_) {
-    // Play the received audio content using Web Audio API
-    playAudio(result.audioContent_);
-  }
+        if (e.data instanceof Blob) {
+        // If the received data is a Blob, it contains the audio data
+        processAudioBlob(e.data);
+      } 
         
    
     }
@@ -348,25 +348,24 @@
       }
     
     }
+    
     //-------------------------------------------------------------------------------------------
+function processAudioBlob(blob) {
+      var audio = new Audio();
+      var objectURL = URL.createObjectURL(blob);
 
-    function playAudio(audioContent) {
-  // Create an audio context
-  var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      // Set the audio source to the Blob's object URL
+      audio.src = objectURL;
 
-  // Create an audio buffer from the received audio content
-  audioContext.decodeAudioData(audioContent.buffer, function(buffer) {
-    // Create a buffer source node
-    var source = audioContext.createBufferSource();
-    source.buffer = buffer;
+      // Append the audio element to the document body or any other container
+      document.body.appendChild(audio);
 
-    // Connect the source node to the audio context's destination (speakers)
-    source.connect(audioContext.destination);
-
-    // Start playing the audio
-    source.start();
-  });
-}
+      // Play the audio
+      audio.play().catch(function (error) {
+        console.error('Error playing audio:', error);
+      });
+    }
+ 
 
 
     // -----------------------------------
