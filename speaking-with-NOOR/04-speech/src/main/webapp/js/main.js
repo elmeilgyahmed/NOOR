@@ -355,8 +355,8 @@ function processAudioByteArray(audioByteArray) {
   // Here, you might use Web Audio API to create an audio buffer and play it
   var audioContext = new (window.AudioContext || window.webkitAudioContext)();
   var audioBuffer;
-
-  audioContext.decodeAudioData(audioByteArray.buffer, function (buffer) {
+  var buffer = audioByteArray instanceof ArrayBuffer ? audioByteArray : audioByteArray.buffer;
+  audioContext.decodeAudioData(buffer, function (buffer) {
     const source = audioContext.createBufferSource();
     source.buffer = buffer;
     source.connect(audioContext.destination);
