@@ -93,7 +93,7 @@ public class TranscribeSocket extends WebSocketAdapter
             VoiceSelectionParams voice =
                     VoiceSelectionParams.newBuilder()
                             .setLanguageCode("ar-XA") // Adjust the language code as needed
-                            .setName("ar-XA-Wavenet-D") // Adjust the voice name as needed
+                            .setName("ar-XA-Wavenet-C") // Adjust the voice name as needed
                             .build();
 
             // Select the type of audio file
@@ -111,30 +111,13 @@ public class TranscribeSocket extends WebSocketAdapter
             //-------------------------------------------------------------------------------------------------
             // Send the audio content to the client through the WebSocket
             sendAudioToClient(audioContent.toByteArray());
-            try {
-                /*
-            Files.write(
-                Paths.get("/NOOR/speaking-with-NOOR/04-speech/src/main/webapp/js/output.wav"),
-                audioContent.toByteArray());
-                */
-                 Files.write(
-                    Paths.get("output.wav"),
-                    audioContent.toByteArray());
-                
-            }
-            
-            catch (IOException e) {
-                e.printStackTrace();
-            }
-
-
             
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 //===============================================================================================
-        public  void sendAudioToClient(byte[] audioData) {
+public  void sendAudioToClient(byte[] audioData) {
     if (getSession() != null && getSession().isOpen()) {
         try {
             getSession().getRemote().sendBytesByFuture(java.nio.ByteBuffer.wrap(audioData));
