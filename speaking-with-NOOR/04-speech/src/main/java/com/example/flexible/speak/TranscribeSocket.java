@@ -134,7 +134,7 @@ public class TranscribeSocket extends WebSocketAdapter
         }
     }
 //===============================================================================================
-        private  void sendAudioToClient(byte[] audioData) {
+        public  void sendAudioToClient(byte[] audioData) {
     if (getSession() != null && getSession().isOpen()) {
         try {
             getSession().getRemote().sendBytesByFuture(java.nio.ByteBuffer.wrap(audioData));
