@@ -309,7 +309,7 @@
         // If the received data is a Blob, it contains the audio data
         processAudioByteArray(e.data);
       } 
-      
+      else{
       var result = JSON.parse(e.data);
       if (result.alternatives_) {
         transcript.current.innerHTML = result.alternatives_[0].transcript_;
@@ -324,7 +324,7 @@
             typeWriter(result, 30, responseElement);
       }
 
-        
+      }  
    
     }
 
