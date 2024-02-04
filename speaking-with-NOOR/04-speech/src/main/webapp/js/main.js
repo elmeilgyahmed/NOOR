@@ -239,18 +239,6 @@
           
         });
 
-        //****************************************
-
-        // --------------------------------------------------
-        /*
-        socket.addEventListener('response', function(event) {
-          socket.addEventListener('response', onReceievingVertixMessage);
-          startByteStream(event);
-        }, {once: true});
-        */
-
-        // ----------------------------------------------------
-
         socket.send(JSON.stringify({sampleRate: context.sampleRate,languageCode: context.languageCode}));
 
       }).catch(console.log.bind(console));
@@ -277,13 +265,6 @@
     };
     transcript.el.appendChild(transcript.current);
     
-    /*
-    var response = {
-      el: document.getElementById('noor_response').childNodes[0],
-      current: document.createElement('div')
-    };
-    response.el.appendChild(response.current);
-    */
       function typeWriter(text, speed, outputElement) {
             outputElement.innerHTML = ''; // Clear old text
             let index = 0;
@@ -304,9 +285,8 @@
      * This function is called with the transcription result from the server.
      */
     function onTranscription(e) {
-              if(e.data instanceof Blob){
-        // If the received data is a Blob, it contains the audio data
-        console.log("audio type is blob");
+      if(e.data instanceof Blob){
+
         processAudioBlob(e.data);
       }     
       else{
@@ -328,25 +308,6 @@
    
     }
 
-    // ----------------------------------
-    function onReceievingVertixMessage (event){
-      var data = JSON.parse(event.data);
-      console.log(data);
-
-      if (data.event === 'response') {
-        // Handle the 'response' event, e.g., update UI or perform other actions
-        console.log("Received response from server:", data.data);
-
-        // Assuming you want to display the response in a specific element, update accordingly
-        var responseElement = document.getElementById('noor_response');
-        responseElement.innerHTML = "Server Response: " + data.data;
-      } else {
-        console.log("Wrong event");
-      }
-    
-    }
-    
-    //-------------------------------------------------------------------------------------------
 function processAudioBlob(blob) {
     var audioContext = new (window.AudioContext || window.webkitAudioContext)();
     
