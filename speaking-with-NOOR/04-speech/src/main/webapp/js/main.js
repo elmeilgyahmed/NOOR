@@ -304,11 +304,16 @@
      * This function is called with the transcription result from the server.
      */
     function onTranscription(e) {
-      var audio= e.data//===================================================================================================
-        if(audio instanceof Uint8Array ||  audio instanceof Blob){
+        if(e.data instanceof Uint8Array){
         // If the received data is a Blob, it contains the audio data
+          console.log("audio type is Unit8Array");
         processAudioByteArray(e.data);
       } 
+              if(e.data instanceof Blob){
+        // If the received data is a Blob, it contains the audio data
+        console.log("audio type is blob");
+        processAudioByteArray(e.data);
+      }     
       else{
       var result = JSON.parse(e.data);
       if (result.alternatives_) {
