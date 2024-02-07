@@ -1,3 +1,3 @@
 $./script.sh 
 
-run inside google cloud project
+run inside NOOR google cloud project
