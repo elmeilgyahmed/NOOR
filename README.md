@@ -1,9 +1,9 @@
-# Codelab: Speaking with a Webpage
+# NOOR Customized Egyptian Voice Interactive Chatbot
 
-This is a sample solution for the codelab "Speaking with a Webpage".
-
-## Step 0 - Configure Compute Engine
-
+# Usage
+Try using the NOOR web at (https://34.171.33.125:8443/#)
+# Contribution 
+Installation:
 Install Java and Maven:
 
     sudo apt-get update
@@ -26,14 +26,14 @@ connection to be `https`. Configure the app for https - for development
 purposes, a self-signed certificate suffices.
 
 Generate a self-signed SSL cert for now:
-
+سس
     keytool -genkey -alias jetty -keyalg RSA \
         -keystore src/main/resources/jetty.keystore \
         -storepass secret -keypass secret -dname "CN=localhost"
 
 Then run:
 
-    cd 01-hello-https/
+    cd 04-speech/
     mvn clean jetty:run
 
 ## Step 2
