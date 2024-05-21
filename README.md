@@ -1,16 +1,36 @@
 # NOOR Customized Egyptian Voice Interactive Chatbot
+NOOR is a conversational AI chatbot designed to interact with users in a natural, Egyptian Arabic voice.
+It utilizes speech recognition and text-to-speech technologies to provide an engaging and interactive experience.
+# Getting Started
+**Try using the NOOR web at** (https://34.171.33.125:8443/#)
+# 1. Installation:
 
-# Usage
-Try using the NOOR web at (https://34.171.33.125:8443/#)
-# Contribution 
-Installation:
-Install Java and Maven:
+-Prerequisites: Ensure you have Java and Maven installed.
 
     sudo apt-get update
     sudo apt-get install -y maven openjdk-8-jdk
+    
+-Clone the Repository:   
+
     git clone https://github.com/elmeilgyahmed/NOOR.git
+    
+-Build and Run:
+Navigate to the project directory and run:    
+    
     cd NOOR/speaking-with-NOOR/04-speech
     mvn clean jetty:run
+
+# 2.Deployment on Google Cloud Platform (Optional)
+
+This section details deployment instructions for Google Cloud Platform (GCP). Refer to the official GCP documentation for in-depth guidance.
+
+**Technical Details**
+
+NOOR leverages the following technologies:
+
+    Speech Recognition: Converts spoken audio into text.
+    Text-to-Speech: Generates human-like speech from text.
+    WebSockets: Enables real-time, two-way communication between browser and server for audio streaming.
     
 # Configuring on GCP:
 The maven jetty plugin listens for http and https connections on ports `8080`
@@ -51,6 +71,10 @@ port:8443
 ## Step 3
 
 Use the Speech API to stream transcriptions of speech to the client.
+
+# Contributing (Optional)
+
+- We welcome contributions to the NOOR project! If you're interested, please refer to the contribution guidelines located within the repository.
 
 ## Disclaimer
 
