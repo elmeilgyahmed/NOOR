@@ -50,8 +50,8 @@ connection to be `https`. Configure the app for https - for development
 purposes, a self-signed certificate suffices.
 
 Generate a self-signed SSL cert for now:
-سس
-    keytool -genkey -alias jetty -keyalg RSA \
+
+        -keytool -genkey -alias jetty -keyalg RSA \
         -keystore src/main/resources/jetty.keystore \
         -storepass secret -keypass secret -dname "CN=localhost"
 
