@@ -1,6 +1,9 @@
 # NOOR Customized Egyptian Voice Interactive Chatbot
 NOOR is a conversational AI chatbot designed to interact with users in a natural, Egyptian Arabic voice.
 It utilizes speech recognition and text-to-speech technologies to provide an engaging and interactive experience.
+
+![image](https://github.com/elmeilgyahmed/NOOR/assets/50087016/13c7c36b-d006-49e3-a31e-0362aae8d7ee)
+
 # Getting Started
 **Try using the NOOR web at** (https://34.171.33.125:8443/#)
 # 1. Installation:
