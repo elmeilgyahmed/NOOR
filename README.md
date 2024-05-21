@@ -8,6 +8,7 @@ Install Java and Maven:
 
     sudo apt-get update
     sudo apt-get install -y maven openjdk-8-jdk
+    
 
 The maven jetty plugin listens for http and https connections on ports `8080`
 and `8443` by default. Open them up on the Compute Engine firewall:
