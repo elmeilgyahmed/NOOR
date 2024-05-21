@@ -74,7 +74,7 @@ Use the Speech API to stream transcriptions of speech to the client.
 
 # Contributing (Optional)
 
-- We welcome contributions to the NOOR project! If you're interested, please refer to the contribution guidelines located within the repository.
+- We welcome contributions to the NOOR project! If you're interested contact me.
 
 ## Disclaimer
 
