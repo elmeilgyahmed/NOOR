@@ -8,17 +8,17 @@ It utilizes speech recognition and text-to-speech technologies to provide an eng
 **Try using the NOOR web at** (https://34.171.33.125:8443/#)
 # 1. Installation:
 
--Prerequisites: Ensure you have Java and Maven installed.
+**- Prerequisites: Ensure you have Java and Maven installed.**
 
     sudo apt-get update
     sudo apt-get install -y maven openjdk-8-jdk
     
--Clone the Repository:   
+**- Clone the Repository:** 
 
     git clone https://github.com/elmeilgyahmed/NOOR.git
     
--Build and Run:
-Navigate to the project directory and run:    
+**- Build and Run:**
+**Navigate to the project directory and run:**    
     
     cd NOOR/speaking-with-NOOR/04-speech
     mvn clean jetty:run
@@ -29,7 +29,7 @@ This section details deployment instructions for Google Cloud Platform (GCP). Re
 
 **Technical Details**
 
-NOOR leverages the following technologies:
+**NOOR leverages the following technologies:**
 
     Speech Recognition: Converts spoken audio into text.
     Text-to-Speech: Generates human-like speech from text.
